@@ -1,30 +1,30 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Hammer : MonoBehaviour
 {
     int damage;
+    [SerializeField]
     float speed;
     float direction;
     private Camera mainCamera;
-    public Hammer(int damage)
+    public Hammer(int damage,float direction,float speed)
     {
         this.damage= damage;
-        mainCamera = Camera.main;
-        Vector2 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 camera = mainCamera.transform.position;
-        direction = Mathf.Atan((mouse.y-camera.y)/(mouse.x-camera.x));
+        this.direction = direction;
+        this.speed = speed;
     }
 
     public void Update()
     {
-        move();
+        move(direction,speed);
     }
-    public void move() { 
+    public void move(float direction,float speed) { 
         Vector2 pos = transform.position;
 
-        pos.x=speed*Mathf.Cos(direction)*Time.deltaTime;
-        pos.y=speed*Mathf.Sin(direction)*Time.deltaTime;
+        pos.x+=speed*Mathf.Cos(direction)*Time.deltaTime;
+        pos.y+=speed*Mathf.Sin(direction)*Time.deltaTime;
 
         transform.position=pos;
     }

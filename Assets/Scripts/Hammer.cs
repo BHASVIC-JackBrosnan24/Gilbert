@@ -14,6 +14,8 @@ public class Hammer : MonoBehaviour
     private GameObject player;
 
     private Vector3 directionVector;
+    [SerializeField]
+    private float timer;
 
     public void Start()
     {
@@ -35,10 +37,14 @@ public class Hammer : MonoBehaviour
             pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
             pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
         }
-        
 
+        timer=timer - 1*Time.deltaTime;
+        if (timer <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
-        transform.position = pos;
+            transform.position = pos;
     }
 
     public void directionCalc() {

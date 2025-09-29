@@ -4,29 +4,47 @@ using UnityEngine.InputSystem;
 
 public class Hammer : MonoBehaviour
 {
+    [SerializeField]
     int damage;
     [SerializeField]
     float speed;
     float direction;
     private Camera mainCamera;
-    public Hammer(int damage,float direction,float speed)
+
+    private GameObject player;
+
+    private Vector3 directionVector;
+
+    public void Start()
     {
-        this.damage= damage;
-        this.direction = direction;
-        this.speed = speed;
+        mainCamera = Camera.main;
+        player = GameObject.Find("Player");
+        directionCalc();
     }
 
     public void Update()
     {
-        move(direction,speed);
-    }
-    public void move(float direction,float speed) { 
         Vector2 pos = transform.position;
 
-        pos.x+=speed*Mathf.Cos(direction)*Time.deltaTime;
-        pos.y+=speed*Mathf.Sin(direction)*Time.deltaTime;
+        if (directionVector.x > 0)
+        {
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime;
+        }
+        else {
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
+        }
+        
 
-        transform.position=pos;
+
+        transform.position = pos;
+    }
+
+    public void directionCalc() {
+        Vector3 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        directionVector = (mouse - player.transform.position).normalized;
+        direction=Mathf.Atan(directionVector.y/directionVector.x);
     }
 
 

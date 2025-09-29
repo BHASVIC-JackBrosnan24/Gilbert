@@ -14,4 +14,8 @@ public class Crosshair : MonoBehaviour
 
         transform.position = mouse;
     }
+
+    public Vector2 getPos() { 
+        return transform.position;
+    }
 }

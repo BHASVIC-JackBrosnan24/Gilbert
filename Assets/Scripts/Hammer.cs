@@ -53,7 +53,13 @@ public class Hammer : MonoBehaviour
         direction=Mathf.Atan(directionVector.y/directionVector.x);
     }
 
+    public int getDamage() {
+        return damage;
+    }
 
+    public void setDamage(int newDamage) {
+        damage = newDamage;
+    }
 
 
 }

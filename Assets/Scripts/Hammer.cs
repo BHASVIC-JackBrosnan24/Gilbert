@@ -24,7 +24,7 @@ public class Hammer : MonoBehaviour
         directionCalc();
     }
 
-    public void Update()
+    private void Update()
     {
         Vector2 pos = transform.position;
 
@@ -47,7 +47,7 @@ public class Hammer : MonoBehaviour
             transform.position = pos;
     }
 
-    public void directionCalc() {
+    private void directionCalc() {
         Vector3 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         directionVector = (mouse - player.transform.position).normalized;
         direction=Mathf.Atan(directionVector.y/directionVector.x);

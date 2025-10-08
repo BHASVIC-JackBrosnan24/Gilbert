@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParentRanged : ParentEnemy
+public class ParentRanged : MonoBehaviour
 {
     private float range;
 

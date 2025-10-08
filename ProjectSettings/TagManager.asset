@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Enemy
   - Hammer
-  - 
+  - Effects
   - 
   - 
   - 
@@ -45,6 +45,18 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 698682559
+    locked: 0
+  - name: Player
+    uniqueID: 560150805
+    locked: 0
+  - name: Hammer
+    uniqueID: 2456513885
+    locked: 0
+  - name: Effects
+    uniqueID: 3100853673
     locked: 0
   m_RenderingLayers:
   - Default

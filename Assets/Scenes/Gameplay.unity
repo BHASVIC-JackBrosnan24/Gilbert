@@ -1247,6 +1247,14 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 722626212821669298, guid: 057eb27491060344ab010d3fe8d0fddd, type: 3}
+      propertyPath: dashingSprite
+      value: 
+      objectReference: {fileID: -2994728466119781652, guid: fbc8873d8747d6d4fb54c8b5a41eaf15, type: 3}
+    - target: {fileID: 722626212821669298, guid: 057eb27491060344ab010d3fe8d0fddd, type: 3}
+      propertyPath: regularSprite
+      value: 
+      objectReference: {fileID: -2134862940411826305, guid: adedf86e6d12bd549953f85b12a97d3f, type: 3}
     - target: {fileID: 2650420383824838614, guid: 057eb27491060344ab010d3fe8d0fddd, type: 3}
       propertyPath: m_Name
       value: Player

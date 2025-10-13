@@ -2,20 +2,16 @@
 
 public class Crosshair : MonoBehaviour
 {
-    private Camera mainCamera;
+    private Camera mainCamera;//gets the camera
 
     private void Start()
     {
-        mainCamera = Camera.main;
+        mainCamera = Camera.main;//sets the camera to the main camera
     }
     void Update()
     {
-        Vector2 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);//gets the position of the mouse
 
-        transform.position = mouse;
-    }
-
-    public Vector2 getPos() { 
-        return transform.position;
+        transform.position = mouse;//sets this position to the position of the mouseD
     }
 }

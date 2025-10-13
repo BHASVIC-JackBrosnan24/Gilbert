@@ -4,62 +4,61 @@ using UnityEngine.InputSystem;
 
 public class Hammer : MonoBehaviour
 {
-    [SerializeField]
-    int damage;
-    [SerializeField]
-    float speed;
-    float direction;
+    int damage; //the amount of damage the hammer will do
+    float speed; //how fast the hammer should travel
+    float direction; //the direction the hammer will travel in
     private Camera mainCamera;
 
     private GameObject player;
 
-    private Vector3 directionVector;
+    private PlayerStats playerStats;
+
+    private Vector3 directionVector; //the direction vector of the direction it should travel in
     [SerializeField]
-    private float timer;
+    private float timer; //a timer for when the hammer should despawn
 
     public void Start()
     {
+        playerStats = this.GetComponent<PlayerStats>();
+        speed = playerStats.getHammerSpeed(); //gets the hammer speed from the stats script
+        damage = playerStats.getDamage(); //gets the damage from the stats script
         mainCamera = Camera.main;
         player = GameObject.Find("Player");
-        directionCalc();
+        directionCalc(); 
     }
 
     private void Update()
     {
         Vector2 pos = transform.position;
 
-        if (directionVector.x > 0)
+        if (directionVector.x > 0) //checks if it is moving in a positive direction
         {
             pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime; //calculates the new location
         }
         else {
             pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
             pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
         }
 
-        timer=timer - 1*Time.deltaTime;
+        timer=timer - 1*Time.deltaTime; //decreases the timer
         if (timer <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject);//destorys the hammer
         }
 
-            transform.position = pos;
+            transform.position = pos; //sets the new position for the hammer
     }
 
-    private void directionCalc() {
-        Vector3 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        directionVector = (mouse - player.transform.position).normalized;
-        direction=Mathf.Atan(directionVector.y/directionVector.x);
-    }
-
-    public int getDamage() {
+    public int getDamage()
+    {
         return damage;
     }
 
-    public void setDamage(int newDamage) {
-        damage = newDamage;
+    private void directionCalc() { //method for calculating the direction
+        Vector3 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition); //vector 3 for where the mouse looks like it should be
+        directionVector = (mouse - player.transform.position).normalized; //calculates the direction vector
+        direction=Mathf.Atan(directionVector.y/directionVector.x); //calculates the angle for the direction the hammer shoould travel in
     }
-
 
 }

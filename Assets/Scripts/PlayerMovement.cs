@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
+    private float speed; //base speed
 
-    private float speedV;
-    private float speedH;
+    private float speedV; //vertical speed
+    private float speedH; //horizontal speed
 
-    private float tempH;
-    private float tempV;
+    private float tempH; //tempoary horizontal speed
+    private float tempV; //temporary veritical speed
 
-    private float dashing = 0f;
-    private float dashCooldown = 0f;
+    private float dashing = 0f; //value that is >0 when dashing
+    private float dashCooldown = 0f; //cooldown for the dash
 
     private SpriteRenderer spriteRenderer;
+    private PlayerStats playerStats;
 
     [SerializeField]
     private Sprite dashingSprite;
@@ -25,51 +25,52 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        playerStats = this.GetComponent<PlayerStats>();
+        speed = playerStats.getSpeed(); // gets player speed from the stats script
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
-        speedV = speed;
-        speedH = speed;
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        speedV = speed; 
+        speedH = speed; 
+        float h = Input.GetAxis("Horizontal"); //equals 1 if A or D are pressed
+        float v = Input.GetAxis("Vertical"); //equals 1 if W or S are pressed
         Vector2 pos = transform.position;
 
-        if (Input.GetKeyDown("space") && dashCooldown<=0f)
+        if (Input.GetKeyDown("space") && dashCooldown<=0f) //checks if you can dash
         {
             dash();
-            print(1);
         }
 
         if (dashing > 0f)
         {
             dashing = dashing - 1f*Time.deltaTime;
-            h = tempH;
+            h = tempH; //makes sure h and v don't change for the entirety of the dash
             v = tempV;
-            spriteRenderer.sprite = dashingSprite;
+            spriteRenderer.sprite = dashingSprite; //changes sprite so it looks like you are dashing
         }
         else { 
-            tempH = h;
+            tempH = h; //makes sure when you dash, h and v will be the correct values
             tempV = v;
-            spriteRenderer.sprite = regularSprite;
+            spriteRenderer.sprite = regularSprite; //changes sprite back to the regular sprite
         }
 
         if (dashCooldown > 0f) {
-            dashCooldown = dashCooldown - 1f * Time.deltaTime;
+            dashCooldown = dashCooldown - 1f * Time.deltaTime;//decreases dash timer
         }
 
-        if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))
+        if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
         {
-            speedV = Mathf.Sqrt(speed * speed * 0.5f);
+            speedV = Mathf.Sqrt(speed * speed * 0.5f);//calculates the correct speed if you move diagonally
             speedH = Mathf.Sqrt(speed * speed * 0.5f);
         }
 
         if (dashing > 0f) {
             speedV = speed * 5;
-            speedH = speed * 5;
+            speedH = speed * 5;//makes you travel faster when dashing
         }
 
-        pos.x += h * speedH * Time.deltaTime;
+        pos.x += h * speedH * Time.deltaTime; //calculates your new location
         pos.y += v * speedV * Time.deltaTime;
 
 
@@ -77,12 +78,12 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void dash() {
-        dashing = 0.15f;
+    private void dash() { //all the code that needs to be called once to set up the dash
+        dashing = 0.15f; 
         dashCooldown = 0.8f;
     }
 
-    public bool getDashInvincibility() { 
+    public bool getDashInvincibility() { //true if you are dashing, hence should be invincible
         return dashing> 0f;
     }
 

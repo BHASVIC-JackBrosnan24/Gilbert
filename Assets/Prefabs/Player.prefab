@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3869838031219717768}
   - component: {fileID: 5772934201954441492}
   - component: {fileID: -992505033272675768}
+  - component: {fileID: -7830314830121987159}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -103,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5044acc820c6ff4089d668c63488462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  dashingSprite: {fileID: 0}
+  regularSprite: {fileID: 0}
 --- !u!50 &3869838031219717768
 Rigidbody2D:
   serializedVersion: 5
@@ -190,3 +192,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.45, y: 2.15}
   m_EdgeRadius: 0
+--- !u!114 &-7830314830121987159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2650420383824838614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af80b19f3e3d0884ba7a1b00e9ed547a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  damage: 2

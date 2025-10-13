@@ -19,11 +19,11 @@ public class Hammer : MonoBehaviour
 
     public void Start()
     {
-        playerStats = this.GetComponent<PlayerStats>();
-        speed = playerStats.getHammerSpeed(); //gets the hammer speed from the stats script
-        damage = playerStats.getDamage(); //gets the damage from the stats script
         mainCamera = Camera.main;
         player = GameObject.Find("Player");
+        playerStats = player.GetComponent<PlayerStats>();
+        speed = playerStats.getHammerSpeed(); //gets the hammer speed from the stats script
+        damage = playerStats.getDamage(); //gets the damage from the stats script
         directionCalc(); 
     }
 

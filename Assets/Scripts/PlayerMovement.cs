@@ -37,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical"); //equals 1 if W or S are pressed
         Vector2 pos = transform.position;
 
+        if (dashing > 0f)
+        {
+            speed = speed / 5;
+        }
+
         if (Input.GetKeyDown("space") && dashCooldown<=0f) //checks if you can dash
         {
             dash();
@@ -59,15 +64,15 @@ public class PlayerMovement : MonoBehaviour
             dashCooldown = dashCooldown - 1f * Time.deltaTime;//decreases dash timer
         }
 
-        if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
+        if (dashing > 0f)
+        {
+            speed = speed * 5;
+        }
+
+            if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
         {
             speedV = Mathf.Sqrt(speed * speed * 0.5f);//calculates the correct speed if you move diagonally
             speedH = Mathf.Sqrt(speed * speed * 0.5f);
-        }
-
-        if (dashing > 0f) {
-            speedV = speed * 5;
-            speedH = speed * 5;//makes you travel faster when dashing
         }
 
         pos.x += h * speedH * Time.deltaTime; //calculates your new location
@@ -84,7 +89,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool getDashInvincibility() { //true if you are dashing, hence should be invincible
-        return dashing> 0f;
+        if(dashing > 0f){
+            return true;
+        }
+        else{  
+            return false; 
+        }
+            
     }
 
 }

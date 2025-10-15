@@ -12,8 +12,11 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = player.position;
-        pos.z = -10;//makes sure the z position of the camera never moves
-        transform.position = pos;
+        if (player != null)
+        {
+            pos = player.position;
+            pos.z = -10;//makes sure the z position of the camera never moves
+            transform.position = pos;
+        }
     }
 }

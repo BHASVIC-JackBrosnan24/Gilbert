@@ -11,9 +11,13 @@ public class ParentMeleeEnemy : MonoBehaviour
     [SerializeField]
     private float attackRate; //how fast the enemy will attack
 
+    private float attackTimer = 0;
+
     private Transform player;
     private Vector3 directionVector;
     private float direction;
+    PlayerStats playerStats;
+    PlayerMovement playerMovement;
 
     void Start()
     {
@@ -23,10 +27,16 @@ public class ParentMeleeEnemy : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position != player.transform.position) //makes sure the enemy isn't at the same location as the player
+        if (player != null)
         {
-            directionCalc();
-            movement();
+            if (transform.position != player.transform.position) //makes sure the enemy isn't at the same location as the player
+            {
+                directionCalc();
+                movement();
+            }
+        }
+        if (attackTimer >= 0) { 
+        attackTimer -= Time.deltaTime*attackRate; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -39,9 +49,14 @@ public class ParentMeleeEnemy : MonoBehaviour
             damaged(hDamage);//damages the enemy based on the hammers damage
             Destroy(hmr);//destroys the hammer
         }
+    }
 
-        if (collision.gameObject == player) {
-            attack();
+    private void OnCollisionStay2D(Collision2D collision) //every frame that there are collisions
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        { //if it collides with the player
+            GameObject plyr = collision.gameObject;
+            attack(plyr); //passes in the player game object to the attack method
         }
     }
 
@@ -77,5 +92,13 @@ public class ParentMeleeEnemy : MonoBehaviour
         direction = Mathf.Atan(directionVector.y / directionVector.x); //calculate the angle it should travel at
     }
 
-    private void attack() { }
+    private void attack(GameObject plyr) {
+        playerStats = plyr.GetComponent<PlayerStats>(); //gets the stats and movement components
+        playerMovement = plyr.GetComponent<PlayerMovement>();
+        if (playerMovement.getDashInvincibility() == false && attackTimer<=0) //makes sure the player isn't dashing (invincible), and enemy can attack
+        {
+            playerStats.damaged(damage); //damages player
+            attackTimer += 1;
+        }
+    }
 }

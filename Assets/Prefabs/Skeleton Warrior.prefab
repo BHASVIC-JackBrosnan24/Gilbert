@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5825857881593747771}
   - component: {fileID: 8014895478378384686}
   - component: {fileID: 2888234012894801742}
+  - component: {fileID: -4631967492149697456}
   m_Layer: 8
   m_Name: Skeleton Warrior
   m_TagString: Enemy
@@ -110,10 +111,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -170,3 +171,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &-4631967492149697456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834779680721585408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7f785ba40ab4946b6276db33863dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 16
+  damage: 8
+  speed: 2.3
+  attackRate: 5

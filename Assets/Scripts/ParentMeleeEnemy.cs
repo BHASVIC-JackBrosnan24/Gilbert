@@ -10,6 +10,8 @@ public class ParentMeleeEnemy : MonoBehaviour
     private float speed; //how fast the enemy will move
     [SerializeField]
     private float attackRate; //how fast the enemy will attack
+    [SerializeField]
+    private int expYield;//how much exp the enemy gives
 
     private float attackTimer = 0;
 
@@ -65,6 +67,9 @@ public class ParentMeleeEnemy : MonoBehaviour
         health -= hDamage;//decreases health by the damage of the hammmer
         if (health <= 0)
         {
+            GameObject plyr = GameObject.Find("Player"); //gets the player
+            PlayerStats playerStats = plyr.GetComponent<PlayerStats>(); //gets the players stats
+            playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
             Destroy(this.gameObject);//destroys this game object
         }
     }

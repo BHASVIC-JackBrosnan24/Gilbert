@@ -11,9 +11,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int maxHealth; //maximum health the player can have
 
+    [SerializeField]
+    private GameObject levelUpEffect;
+
     private float hammerSpeed = 10f; //base speed of hammer
-    private float exp=0; //starting exp (0)
+    private int exp = 0; //starting exp (0)
     private int health; //current health of the player
+    private int level = 1; //level of the player
+    private int nextLevelBarrier = 10;
+
 
     void Start()
     {
@@ -23,7 +29,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public float getSpeed() { //returns speed
@@ -53,14 +59,15 @@ public class PlayerStats : MonoBehaviour
         hammerSpeed = ahammerSpeed;
     }
 
-    public float getEXP() //returns exp
+    public int getEXP() //returns exp
     {
         return exp;
     }
 
-    public void setEXP(float EXP) //sets exp
+    public void setEXP(int EXP) //sets exp
     {
         exp = EXP;
+        levelCalc();
     }
 
     public void damaged(int damaged) {
@@ -70,4 +77,24 @@ public class PlayerStats : MonoBehaviour
             Destroy(this.gameObject); //destroys player
         }
     }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    private void levelCalc()
+    {
+        if (exp >= nextLevelBarrier)
+        {
+            level += 1; //increases level by 1
+            exp = exp - nextLevelBarrier; //resets exp
+            nextLevelBarrier = (nextLevelBarrier + 5) * level; //increases exp needed for next level
+            GameObject lvlUp = Instantiate(levelUpEffect); //creates the level up effect
+            Vector2 lvlUpPos = transform.position;
+            lvlUpPos.y = lvlUpPos.y + 1;
+            lvlUp.transform.position = lvlUpPos;
+        }
+    }
+
 }

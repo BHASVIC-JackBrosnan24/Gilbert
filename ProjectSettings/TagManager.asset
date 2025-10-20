@@ -17,9 +17,9 @@ TagManager:
   - Background
   - Player
   - Enemy
+  - EnemyProjectile
   - Hammer
   - Effects
-  - 
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 560150805
+    locked: 0
+  - name: EnemyProjectile
+    uniqueID: 1650051779
     locked: 0
   - name: Hammer
     uniqueID: 2456513885

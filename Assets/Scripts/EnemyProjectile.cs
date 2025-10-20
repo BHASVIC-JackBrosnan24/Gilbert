@@ -13,6 +13,9 @@ public class EnemyProjectile : MonoBehaviour
 
     private ParentRangedEnemy enemyStats;
 
+    private PlayerStats playerStats;
+    private PlayerMovement playerMovement;
+
     private Vector3 directionVector; //the direction vector of the direction it should travel in
     private bool ready=false;//checks if setEnemy() has happened
     float timer;
@@ -52,6 +55,19 @@ public class EnemyProjectile : MonoBehaviour
             timer=timer-Time.deltaTime;
             if (timer <= 0) { 
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) { 
+            GameObject plyr = collision.gameObject; //takes the player as a game object
+            playerStats = plyr.GetComponent<PlayerStats>(); //gets the stats and movement components
+            playerMovement = plyr.GetComponent<PlayerMovement>();
+            if (playerMovement.getDashInvincibility() == false) //makes sure the player isn't dashing (invincible), and enemy can attack
+            {
+                playerStats.damaged(damage); //damages player
             }
         }
     }

@@ -114,7 +114,7 @@ public class ParentRangedEnemy : MonoBehaviour
         projectileStats = null;
         attackTimer += attackRate;//restarts timer until it can attack
     }
-
+    
     public float getProjectileSpeed() { 
         return projectileSpeed;
     }

@@ -45,14 +45,14 @@ public class ParentRangedEnemy : MonoBehaviour
             {
                 directionCalc();
                 movement();
-                if (attackTimer <= 0) {
-                    attack();
-                }
+            }
+            else if(attackTimer<=0) { //if the player's in range and the timer=0
+                attack();
             }
         }
         if (attackTimer >= 0)
         {
-            attackTimer -= Time.deltaTime * (attackRate/8); //decreases timer proportionally to attack rate
+            attackTimer -= Time.deltaTime * (attackRate/1.5f); //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -106,10 +106,13 @@ public class ParentRangedEnemy : MonoBehaviour
     private void attack()
     {
         GameObject Projectile = Instantiate(projectile); //creates the projectile
+        projectileStats = Projectile.GetComponent<EnemyProjectile>();
         Vector2 projectilePos = transform.position;
         Projectile.transform.position = projectilePos;
-        projectileStats = Projectile.GetComponent<EnemyProjectile>();
         projectileStats.setEnemy(this.gameObject); //sets this as the projectile's enemy
+        Projectile = null; //resets Porjectile and projectileStats
+        projectileStats = null;
+        attackTimer += attackRate;//restarts timer until it can attack
     }
 
     public float getProjectileSpeed() { 
@@ -119,5 +122,9 @@ public class ParentRangedEnemy : MonoBehaviour
     public int getDamage()
     {
         return damage;
+    }
+
+    public float getRange() {
+        return range;
     }
 }

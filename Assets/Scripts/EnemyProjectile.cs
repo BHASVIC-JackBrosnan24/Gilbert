@@ -24,10 +24,10 @@ public class EnemyProjectile : MonoBehaviour
         player = GameObject.Find("Player");
         speed = enemyStats.getProjectileSpeed(); //gets the projectile speed from the stats script
         damage = enemyStats.getDamage(); //gets the damage from the stats script
+        range = enemyStats.getRange();
         ready = true;
         timer = 1.2f*(range / speed); //uses time=distance/speed to calc how long it should travel for, plus a little extra
         directionCalc();
-        print(1);
     }
 
     private void Update()

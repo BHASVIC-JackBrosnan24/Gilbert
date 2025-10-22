@@ -69,13 +69,59 @@ public class PlayerMovement : MonoBehaviour
             speed = speed * 5;
         }
 
-            if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
+        if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
         {
             speedV = Mathf.Sqrt(speed * speed * 0.5f);//calculates the correct speed if you move diagonally
             speedH = Mathf.Sqrt(speed * speed * 0.5f);
         }
 
-        pos.x += h * speedH * Time.deltaTime; //calculates your new location
+        if (h != 0 && v != 0 && dashing > 0)
+        {
+            if (v < 0)
+            {
+                v = -1;
+            }
+            else {
+                v = 1;
+            }
+            if (h < 0)
+            {
+                h = -1;
+            }
+            else
+            {
+                h = 1;
+            }
+        }
+        else if (v != 0 && dashing > 0)
+        {
+            if (v < 0)
+            {
+                v = -1;
+            }
+            else
+            {
+                v = 1;
+            }
+        }
+        else if (h != 0 && dashing > 0)
+        {
+            if (h < 0)
+            {
+                h = -1;
+            }
+            else
+            {
+                h = 1;
+            }
+        }
+        else if (h == 0 && v == 0 && dashing > 0) {
+            h = 1;
+        }
+
+
+
+            pos.x += h * speedH * Time.deltaTime; //calculates your new location
         pos.y += v * speedV * Time.deltaTime;
 
 
@@ -85,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void dash() { //all the code that needs to be called once to set up the dash
         dashing = 0.15f; 
-        dashCooldown = 0.8f;
+        dashCooldown = 0.65f;
     }
 
     public bool getDashInvincibility() { //true if you are dashing, hence should be invincible

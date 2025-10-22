@@ -68,6 +68,7 @@ public class EnemyProjectile : MonoBehaviour
             if (playerMovement.getDashInvincibility() == false) //makes sure the player isn't dashing (invincible), and enemy can attack
             {
                 playerStats.damaged(damage); //damages player
+                Destroy(gameObject);
             }
         }
     }

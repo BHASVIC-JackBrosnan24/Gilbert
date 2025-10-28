@@ -71,7 +71,6 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void damaged(int damaged) {
-        print(health);
         health = health - damaged; //reduces player health by damage
         if (health <= 0) { //if the player should die from the attack
             Destroy(this.gameObject); //destroys player

@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashing > 0f)
         {
-            speed = speed / 5;
+            speed = speed / 3;
         }
 
         if (Input.GetKeyDown("space") && dashCooldown<=0f) //checks if you can dash
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashing > 0f)
         {
-            speed = speed * 5;
+            speed = speed * 3;
         }
 
         if ((h ==1 && v ==1) || (h == 1 && v == -1) || (h == -1 && v == 1) || (h == -1 && v == -1))//checks if you are moving diagonally
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void dash() { //all the code that needs to be called once to set up the dash
-        dashing = 0.15f; 
+        dashing = 0.2f; 
         dashCooldown = 0.65f;
     }
 

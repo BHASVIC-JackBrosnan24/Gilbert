@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.1, y: 0.05, z: 0.067820996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   speed: 2
   attackRate: 2
   expYield: 2
-  range: 8
-  projectileSpeed: 10
+  range: 5.5
+  projectileSpeed: 8
   projectile: {fileID: 7914927480300770391, guid: bd4e0aabb4cc5d748a2ff2c86370db05, type: 3}
 --- !u!212 &2505214298459153466
 SpriteRenderer:

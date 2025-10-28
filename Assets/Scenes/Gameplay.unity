@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1125,6 +1125,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3385863327847202569, guid: 9764879b94607c24abd19262d2c42878, type: 3}
+      propertyPath: timeUntilSpawn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3385863327847202569, guid: 9764879b94607c24abd19262d2c42878, type: 3}
       propertyPath: spawnMaxCounts.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1205,8 +1209,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597664307}
     m_Modifications:
+    - target: {fileID: 1648405319563883934, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
+      propertyPath: m_margin.z
+      value: 155.48521
+      objectReference: {fileID: 0}
     - target: {fileID: 3887091051918364151, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_Name
+      value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887091051918364151, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
+      propertyPath: m_TagString
       value: Timer
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
@@ -1271,11 +1283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 113
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 203
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

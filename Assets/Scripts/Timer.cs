@@ -23,4 +23,8 @@ public class Timer : MonoBehaviour
         intTime = (int)timer;
         m_Object.text = intTime.ToString();
     }
+
+    public int getTime() {
+        return intTime;
+    }
 }

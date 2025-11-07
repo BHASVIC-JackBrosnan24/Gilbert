@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private GameObject levelUpEffect;
 
-    private int[] powerUps; //array of power-ups
+    private int[] hammerPowerUps; //array of power-ups
     private int nextFreePowerUp = 0; //the index of where the next power-up will go
 
     private float hammerSpeed = 10f; //base speed of hammer
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        powerUps = new int[100];
+        hammerPowerUps = new int[100];
     }
 
     // Update is called once per frame
@@ -102,7 +102,7 @@ public class PlayerStats : MonoBehaviour
 
     public void addPowerUp(int powerType) //code for adding power-up to power-up list
     {
-        powerUps[nextFreePowerUp] = powerType;
+        hammerPowerUps[nextFreePowerUp] = powerType;
         nextFreePowerUp += 1; //makes sure the next power-up goes into next index
     }
 

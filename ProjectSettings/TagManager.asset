@@ -17,11 +17,11 @@ TagManager:
   - UI
   - Background
   - Player
+  - PowerUpGem
   - Enemy
   - EnemyProjectile
   - Hammer
   - Effects
-  - 
   - 
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 698682559
+    locked: 0
+  - name: PowerUpGem
+    uniqueID: 4066277929
     locked: 0
   - name: Player
     uniqueID: 560150805

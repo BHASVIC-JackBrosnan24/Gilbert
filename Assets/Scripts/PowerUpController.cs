@@ -1,0 +1,68 @@
+using UnityEngine;
+
+public class PowerUpControllefr : MonoBehaviour
+{
+    [SerializeField]
+    GameObject powerUp;
+
+    [SerializeField]
+    string[] hammerPowerUps; //array full of the list of hammer power ups
+
+    [SerializeField]
+    string[] characterPowerUps; //array full of the list of character power ups
+
+    int randP1;
+    int randP2;
+    int randP3; //the three numbers for the random power-ups
+
+    float randCoordX; //random coordinates
+    float randCoordY;
+
+    float timer = 0.2f; //timer until next spawn
+
+
+    void Update()
+    {
+        timer=timer-Time.deltaTime;//decreases timer
+        if (timer <= 0) {  //when timer runs out, run spawnPowerUp() and reset timer
+            spawnPowerUp();
+            timer = 0.3f;
+        }
+    }
+
+    void spawnPowerUp() { 
+        randP1 = Random.Range(0, hammerPowerUps.Length); //sets randP1 to a random index in HPU
+        if (hammerPowerUps.Length > 1) //checks if there is more than one HPU (there always should be)
+        {
+            while (randP2 == randP1)//makes sure randP2 and randP1 are different
+            {
+                randP2 = Random.Range(0, hammerPowerUps.Length); //sets randP2 to a random power-up in the array
+            }
+        }
+        else { 
+            randP2= Random.Range(0, hammerPowerUps.Length);
+        }
+        if (hammerPowerUps.Length > 2) //repeats previous process but for randP3
+        {
+            while (randP3 == randP1 && randP3 == randP2)
+            {
+                randP3 = Random.Range(0, hammerPowerUps.Length);
+            }
+        }
+        else
+        {
+            randP3 = Random.Range(0, hammerPowerUps.Length);
+        }
+
+        randCoordX = Random.Range(-118.3f, 99.3f); //gets any coordinate on the map
+        randCoordY = Random.Range(-66.4f, 79.2f);
+
+        GameObject spawnedGem = Instantiate(powerUp); //instantiates a power-up gem
+        Vector2 newPos;
+        newPos.x = randCoordX;
+        newPos.y = randCoordY;
+        spawnedGem.transform.position = newPos; //sets the PUG to the random position
+        PowerUpGemScript pugs = spawnedGem.GetComponent<PowerUpGemScript>();
+        pugs.setTypes(randP1,randP2,randP3); //sets the gems power-up types
+    }
+}

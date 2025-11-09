@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PowerUpControllefr : MonoBehaviour
+public class PowerUpController : MonoBehaviour
 {
     [SerializeField]
     GameObject powerUp;

@@ -3,20 +3,19 @@ using UnityEngine;
 public class PowerUpGemScript : MonoBehaviour
 {
     int[] powerType=new int[3]; //the number assossiated with the power-up
+    GameObject ButtonController;
+    ButtonController buttonControllerScript;
     private void Start()
     {
+        ButtonController = GameObject.FindWithTag("ButtonController"); //gets the button controller
+        buttonControllerScript = ButtonController.GetComponent<ButtonController>();
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
     {
         if (collision.gameObject.CompareTag("Player"))//checks if it collides with the player
         {
-            GameObject player = collision.gameObject;
-            PlayerStats playerStats = player.GetComponent<PlayerStats>();
-            //playerStats.addPowerUp(powerType); //adds this power-ups powerType to the array
-            for (int i = 0; i < 3; i++)
-            {
-                print(powerType[i]);
-            }
+            print(3);
+            buttonControllerScript.powerUpTime(powerType);
             Destroy(this.gameObject);
         }
     }

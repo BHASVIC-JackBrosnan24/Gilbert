@@ -57,7 +57,7 @@ public class ButtonController : MonoBehaviour
         powerUpSelection[1] = selection[1];
         powerUpSelection[2] = selection[2];
 
-        SceneManager.LoadScene("Power-Up Selection"); //sends you back to the gameplay scene
+        SceneManager.LoadScene("Power-Up Selection", LoadSceneMode.Additive); //sends you back to the gameplay scene
     }
 
     public int[] getSelection() { //getter for powerUpSelection array

@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 597664304}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1707,11 +1707,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 107
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132
+      value: 121
       objectReference: {fileID: 0}
     - target: {fileID: 8668086946704293965, guid: 60e51c2585e51dc439d4d04b83863084, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

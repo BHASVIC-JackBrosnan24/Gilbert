@@ -10,6 +10,18 @@ public class ButtonController : MonoBehaviour
     private int sceneSwap = 0;
     private int choice;
 
+    private GameObject player;
+    private PlayerStats playerStats;
+
+    [SerializeField]
+    GameObject b1; //button 1
+    [SerializeField]
+    GameObject b2; //button 2
+    [SerializeField]
+    GameObject b3; //button 3
+
+    GameObject[] buttons = new GameObject[3];
+
     void Awake()
     {
         if (instance == null) //if there is no button controller instance, it makes one
@@ -21,6 +33,8 @@ public class ButtonController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        player = GameObject.Find("Player");
+        playerStats = player.GetComponent<PlayerStats>();
     }
 
 
@@ -28,11 +42,8 @@ public class ButtonController : MonoBehaviour
     {
         if (sceneSwap == 1)
         {
-            GameObject player = GameObject.Find("Player");
             if (player != null)
-            {
-                
-                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            { 
                 playerStats.addPowerUp(choice); //adds this power-ups powerType to the array
                 print(2);
                 sceneSwap = 0;
@@ -48,8 +59,13 @@ public class ButtonController : MonoBehaviour
         ButtonScript button = clicked.GetComponent<ButtonScript>(); 
         choice = button.getPowerType();//gets the PowerType of the button clicked
         print(1);
-        sceneSwap = 1;
-        SceneManager.LoadScene("Gameplay"); //sends you back to the gameplay scene
+
+        Destroy(buttons[0]); //removes the buttons from existence
+        Destroy(buttons[1]);
+        Destroy(buttons[2]);
+        buttons[0] = null;
+        buttons[1] = null;
+        buttons[2] = null;
     }
 
     public void powerUpTime(int[] selection) { //sets the power-up selection
@@ -57,7 +73,13 @@ public class ButtonController : MonoBehaviour
         powerUpSelection[1] = selection[1];
         powerUpSelection[2] = selection[2];
 
-        SceneManager.LoadScene("Power-Up Selection", LoadSceneMode.Additive); //sends you back to the gameplay scene
+        GameObject bOne = Instantiate(b1); //creates the buttons
+        GameObject bTwo = Instantiate(b2);
+        GameObject bThree = Instantiate(b3);
+
+        buttons[0] = bOne; //saves the buttons in an array for later use
+        buttons[1] = bTwo;
+        buttons[2] = bThree;
     }
 
     public int[] getSelection() { //getter for powerUpSelection array

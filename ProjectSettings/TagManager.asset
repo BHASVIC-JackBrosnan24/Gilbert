@@ -9,6 +9,7 @@ TagManager:
   - EnemyProjectile
   - Timer
   - ButtonController
+  - Canvas
   layers:
   - Default
   - TransparentFX

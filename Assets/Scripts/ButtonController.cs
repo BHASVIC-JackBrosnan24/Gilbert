@@ -3,15 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
-    public static ButtonController instance; //creates a static ButtonController
 
     private int[] powerUpSelection = new int[3];
 
-    private int sceneSwap = 0;
     private int choice;
 
-    private GameObject player;
-    private PlayerStats playerStats;
 
     [SerializeField]
     GameObject b1; //button 1
@@ -20,37 +16,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField]
     GameObject b3; //button 3
 
-    GameObject[] buttons = new GameObject[3];
 
-    void Awake()
-    {
-        if (instance == null) //if there is no button controller instance, it makes one
-        { 
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else //if there uus a button controller instance, it destroys this one
-        {
-            Destroy(gameObject);
-        }
-        player = GameObject.Find("Player");
-        playerStats = player.GetComponent<PlayerStats>();
-    }
-
-
-    private void Update()
-    {
-        if (sceneSwap == 1)
-        {
-            if (player != null)
-            { 
-                playerStats.addPowerUp(choice); //adds this power-ups powerType to the array
-                print(2);
-                sceneSwap = 0;
-            }
-        }
-
-    }
 
     public void choiceMade()
     {
@@ -58,14 +24,22 @@ public class ButtonController : MonoBehaviour
 
         ButtonScript button = clicked.GetComponent<ButtonScript>(); 
         choice = button.getPowerType();//gets the PowerType of the button clicked
-        print(1);
 
-        Destroy(buttons[0]); //removes the buttons from existence
-        Destroy(buttons[1]);
-        Destroy(buttons[2]);
-        buttons[0] = null;
-        buttons[1] = null;
-        buttons[2] = null;
+        GameObject button1 = GameObject.FindWithTag("Button1");
+        Destroy(button1);
+        GameObject button2 = GameObject.FindWithTag("Button2");
+        Destroy(button2);
+        GameObject button3 = GameObject.FindWithTag("Button3");
+        Destroy(button3);
+
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+
+        playerStats.addPowerUp(choice); //adds this power-ups powerType to the array
+
+        Camera cam = Camera.main;
+        CameraMovement cameraMovement = cam.GetComponent<CameraMovement>();
+        cameraMovement.setMove(true); //lets the camera move again
     }
 
     public void powerUpTime(int[] selection) { //sets the power-up selection
@@ -77,9 +51,14 @@ public class ButtonController : MonoBehaviour
         GameObject bTwo = Instantiate(b2);
         GameObject bThree = Instantiate(b3);
 
-        buttons[0] = bOne; //saves the buttons in an array for later use
-        buttons[1] = bTwo;
-        buttons[2] = bThree;
+        Camera cam = Camera.main;
+        CameraMovement cameraMovement = cam.GetComponent<CameraMovement>();
+        cameraMovement.setMove(false); //stops camera from moving
+        Vector3 pos = cam.transform.position;
+        pos.x = 1000;
+        pos.y = 0;
+        cam.transform.position = pos; //sets camera to the blue background location
+
     }
 
     public int[] getSelection() { //getter for powerUpSelection array

@@ -10,6 +10,9 @@ TagManager:
   - Timer
   - ButtonController
   - Canvas
+  - Button2
+  - Button3
+  - Button1
   layers:
   - Default
   - TransparentFX

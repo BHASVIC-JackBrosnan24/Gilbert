@@ -29,4 +29,9 @@ public class ButtonScript : MonoBehaviour
     public int getPowerType() { //getter for powerType
         return powerType;
     }
+
+    public void destruct() //destroys this button
+    {
+        Destroy(this.gameObject);
+    }
 }

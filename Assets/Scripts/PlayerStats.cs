@@ -104,6 +104,10 @@ public class PlayerStats : MonoBehaviour
     {
         hammerPowerUps[nextFreePowerUp] = powerType;
         nextFreePowerUp += 1; //makes sure the next power-up goes into next index
+        for (int i = 0; i < hammerPowerUps.Length; i++) { 
+            print(hammerPowerUps[i]);
+        }
+            
     }
 
 }

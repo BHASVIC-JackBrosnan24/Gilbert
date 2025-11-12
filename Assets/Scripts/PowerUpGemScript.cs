@@ -14,7 +14,6 @@ public class PowerUpGemScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//checks if it collides with the player
         {
-            print(3);
             buttonControllerScript.powerUpTime(powerType);
             Destroy(this.gameObject);
         }

@@ -15,7 +15,10 @@ public class PlayerStats : MonoBehaviour
     private GameObject levelUpEffect;
 
     private int[] hammerPowerUps; //array of power-ups
-    private int nextFreePowerUp = 0; //the index of where the next power-up will go
+    private int nextFreeHPowerUp = 0; //the index of where the next power-up will go
+
+    private int[] charPowerUps; //array of power-ups
+    private int nextFreeCPowerUp = 0; //the index of where the next power-up will go
 
     private float hammerSpeed = 10f; //base speed of hammer
     private int exp = 0; //starting exp (0)
@@ -23,11 +26,16 @@ public class PlayerStats : MonoBehaviour
     private int level = 1; //level of the player
     private int nextLevelBarrier = 10;
 
+    private int randP1;
+    private int randP2;
+    private int randP3;
+
 
     void Start()
     {
         health = maxHealth;
         hammerPowerUps = new int[100];
+        charPowerUps = new int[100];
     }
 
     // Update is called once per frame
@@ -97,17 +105,59 @@ public class PlayerStats : MonoBehaviour
             Vector2 lvlUpPos = transform.position;
             lvlUpPos.y = lvlUpPos.y + 1;
             lvlUp.transform.position = lvlUpPos;
+
+            PowerUpController powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
+            string[] characterPowerUps = powerUpController.getCharList();
+
+            randP1 = Random.Range(0, characterPowerUps.Length); //sets randP1 to a random index in HPU
+            if (charPowerUps.Length > 1) //checks if there is more than one HPU (there always should be)
+            {
+                randP2 = Random.Range(0, characterPowerUps.Length);
+                while (randP2 == randP1)//makes sure randP2 and randP1 are different
+                {
+                    randP2 = Random.Range(0, characterPowerUps.Length); //sets randP2 to a random power-up in the array
+                }
+            }
+            else
+            {
+                randP2 = Random.Range(0, characterPowerUps.Length);
+            }
+            if (charPowerUps.Length > 2) //repeats previous process but for randP3
+            {
+                randP3 = Random.Range(0, characterPowerUps.Length);
+                while (randP3 == randP1 || randP3 == randP2)
+                {
+                    randP3 = Random.Range(0, characterPowerUps.Length);
+                }
+            }
+            else
+            {
+                randP3 = Random.Range(0, characterPowerUps.Length);
+            }
+            int[] selection = new int[4];
+            selection[0] = randP1;
+            selection[1] = randP2;
+            selection[2] = randP3;
+            selection[3] = 1; //makes sure buttonScript knows these are character type
+            ButtonController buttonControllerScript = GameObject.FindWithTag("ButtonController").GetComponent<ButtonController>();
+            buttonControllerScript.powerUpTime(selection); //starts a power up time with this selection of power-ups
         }
     }
 
     public void addPowerUp(int powerType) //code for adding power-up to power-up list
     {
-        hammerPowerUps[nextFreePowerUp] = powerType;
-        nextFreePowerUp += 1; //makes sure the next power-up goes into next index
-        for (int i = 0; i < hammerPowerUps.Length; i++) { 
-            print(hammerPowerUps[i]);
-        }
-            
+        hammerPowerUps[nextFreeHPowerUp] = powerType;
+        nextFreeHPowerUp += 1; //makes sure the next power-up goes into next index
     }
 
+    public void charPowerUp(int powerType) //code for adding character power-up to power-up list, and changing their stats
+    {
+        charPowerUps[nextFreeCPowerUp] = powerType;
+        nextFreeCPowerUp += 1; //makes sure the next power-up goes into next index
+        if (powerType == 0) //number assossiated with damage up
+        {
+            damage += 3;
+        }
+
+    }
 }

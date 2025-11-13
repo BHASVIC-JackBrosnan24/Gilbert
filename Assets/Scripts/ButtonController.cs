@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class ButtonController : MonoBehaviour
 {
 
-    private int[] powerUpSelection = new int[3];
+    private int[] powerUpSelection = new int[4];
 
     private int choice;
 
@@ -22,6 +22,7 @@ public class ButtonController : MonoBehaviour
 
         ButtonScript button = clicked.GetComponent<ButtonScript>(); 
         choice = button.getPowerType();//gets the PowerType of the button clicked
+        int type = button.getHOC();
 
         GameObject button1 = GameObject.FindWithTag("Button1");
         Destroy(button1);
@@ -33,9 +34,15 @@ public class ButtonController : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
 
-        playerStats.addPowerUp(choice); //adds this power-ups powerType to the array
-
-        Camera cam = Camera.main;
+        if (type == 0)
+        {
+            playerStats.addPowerUp(choice); //adds this power-ups powerType to the array
+        }
+        else
+        {
+            playerStats.charPowerUp(choice); //adds the character power up
+        }
+            Camera cam = Camera.main;
         CameraMovement cameraMovement = cam.GetComponent<CameraMovement>();
         cameraMovement.setMove(true); //lets the camera move again
         PauseController pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
@@ -46,6 +53,7 @@ public class ButtonController : MonoBehaviour
         powerUpSelection[0] = selection[0];
         powerUpSelection[1] = selection[1];
         powerUpSelection[2] = selection[2];
+        powerUpSelection[3] = selection[3];
 
         GameObject bOne = Instantiate(b1); //creates the buttons
         GameObject bTwo = Instantiate(b2);

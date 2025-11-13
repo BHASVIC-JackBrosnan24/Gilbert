@@ -37,6 +37,7 @@ public class PowerUpController : MonoBehaviour
         randP1 = Random.Range(0, hammerPowerUps.Length); //sets randP1 to a random index in HPU
         if (hammerPowerUps.Length > 1) //checks if there is more than one HPU (there always should be)
         {
+            randP2 = Random.Range(0, hammerPowerUps.Length);
             while (randP2 == randP1)//makes sure randP2 and randP1 are different
             {
                 randP2 = Random.Range(0, hammerPowerUps.Length); //sets randP2 to a random power-up in the array
@@ -47,7 +48,8 @@ public class PowerUpController : MonoBehaviour
         }
         if (hammerPowerUps.Length > 2) //repeats previous process but for randP3
         {
-            while (randP3 == randP1 && randP3 == randP2)
+            randP3 = Random.Range(0, hammerPowerUps.Length);
+            while (randP3 == randP1 || randP3 == randP2)
             {
                 randP3 = Random.Range(0, hammerPowerUps.Length);
             }
@@ -67,5 +69,18 @@ public class PowerUpController : MonoBehaviour
         spawnedGem.transform.position = newPos; //sets the PUG to the random position
         PowerUpGemScript pugs = spawnedGem.GetComponent<PowerUpGemScript>();
         pugs.setTypes(randP1,randP2,randP3); //sets the gems power-up types
+    }
+
+    public string getHammer(int i) {
+        return hammerPowerUps[i];
+    }
+
+    public string getChar(int i) {
+        return characterPowerUps[i];
+    }
+
+    public string[] getCharList()
+    {
+        return characterPowerUps;
     }
 }

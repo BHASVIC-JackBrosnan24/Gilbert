@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PowerUpGemScript : MonoBehaviour
 {
-    int[] powerType=new int[3]; //the number assossiated with the power-up
+    int[] powerType=new int[4]; //the number assossiated with the power-up
     GameObject ButtonController;
     ButtonController buttonControllerScript;
     private void Start()
@@ -23,6 +23,7 @@ public class PowerUpGemScript : MonoBehaviour
         powerType[0]=p1;
         powerType[1]=p2;
         powerType[2]=p3;
+        powerType[3] = 0;//makes it knows these are hammer type
     }
 
     public int[] getTypes() { //getter for the power type array

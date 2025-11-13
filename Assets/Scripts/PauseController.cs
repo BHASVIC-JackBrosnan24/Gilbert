@@ -1,17 +1,16 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PauseController : MonoBehaviour
 {
-    public delegate void paused();
-    public static event paused pauseAll; 
-    void Start()
+    public int unpaused = 1; //global variable for everyhting not moving
+
+    public void pause() //stops all movement and timers
     {
-        
+        unpaused = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void unpause() { //resumes all movement and timers
+        unpaused = 1;
     }
 }

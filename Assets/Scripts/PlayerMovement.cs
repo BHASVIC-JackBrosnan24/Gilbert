@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private PlayerStats playerStats;
+    PauseController pauseController;
 
     [SerializeField]
     private Sprite dashingSprite;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         playerStats = this.GetComponent<PlayerStats>();
         speed = playerStats.getSpeed(); // gets player speed from the stats script
         spriteRenderer = GetComponent<SpriteRenderer>();
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
     }
     private void Update()
     {
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashing > 0f)
         {
-            dashing = dashing - 1f*Time.deltaTime;
+            dashing = dashing - Time.deltaTime * pauseController.unpaused;
             h = tempH; //makes sure h and v don't change for the entirety of the dash
             v = tempV;
             spriteRenderer.sprite = dashingSprite; //changes sprite so it looks like you are dashing
@@ -61,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (dashCooldown > 0f) {
-            dashCooldown = dashCooldown - 1f * Time.deltaTime;//decreases dash timer
+            dashCooldown = dashCooldown - Time.deltaTime * pauseController.unpaused;//decreases dash timer
         }
 
         if (dashing > 0f)
@@ -121,8 +123,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            pos.x += h * speedH * Time.deltaTime; //calculates your new location
-        pos.y += v * speedV * Time.deltaTime;
+            pos.x += h * speedH * Time.deltaTime * pauseController.unpaused; //calculates your new location
+        pos.y += v * speedV * Time.deltaTime * pauseController.unpaused;
 
 
         transform.position = pos;

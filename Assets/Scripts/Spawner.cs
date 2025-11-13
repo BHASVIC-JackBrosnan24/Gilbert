@@ -22,9 +22,11 @@ public class Spawner : MonoBehaviour
     private int randomSpawnLocationNumber;
     private GameObject timer;
     private Timer timerTimer;
+    PauseController pauseController;
 
     private void Start()
     {
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         player = GameObject.Find("Player");
         timer = GameObject.Find("Timer");
         timerTimer = timer.GetComponent<Timer>();
@@ -35,7 +37,7 @@ public class Spawner : MonoBehaviour
         while (player!=null) 
         {
             yield return new WaitForSeconds(5/spawnRate); //makes it wait for the spawn rate before 
-            if (timerTimer.getTime() < 300-timeUntilSpawn)
+            if (timerTimer.getTime() < 300-timeUntilSpawn && pauseController.unpaused==1)
             {
                 Vector2 newSpawnerPos = player.transform.position; //new position is the player's position
                 randomSpawnLocationNumber = Random.Range(0, 4); //randomly selects what side it will spawn on

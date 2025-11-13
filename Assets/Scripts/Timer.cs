@@ -11,15 +11,18 @@ public class Timer : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI m_Object;
 
+    PauseController pauseController;
+
     void Start()
     {
         intTime = (int) timer;
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer=timer-Time.deltaTime;
+        timer=timer-(Time.deltaTime * pauseController.unpaused);
         intTime = (int)timer;
         m_Object.text = intTime.ToString();
     }

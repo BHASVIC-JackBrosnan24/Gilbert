@@ -15,6 +15,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
+    PauseController pauseController;
 
     private Vector3 directionVector; //the direction vector of the direction it should travel in
     private bool ready=false;//checks if setEnemy() has happened
@@ -22,6 +23,7 @@ public class EnemyProjectile : MonoBehaviour
 
     public void setEnemy(GameObject thisEnemy)
     {
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         enemy = thisEnemy;
         enemyStats = enemy.GetComponent<ParentRangedEnemy>();
         player = GameObject.Find("Player");
@@ -41,18 +43,18 @@ public class EnemyProjectile : MonoBehaviour
 
             if (directionVector.x > 0) //checks if it is moving in a positive direction
             {
-                pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
-                pos.y += speed * Mathf.Sin(direction) * Time.deltaTime; //calculates the new location
+                pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+                pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused; //calculates the new location
             }
             else
             {
-                pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
-                pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
+                pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+                pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
             }
 
             transform.position = pos; //sets the new position for the projectile
 
-            timer=timer-Time.deltaTime;
+            timer=timer-(Time.deltaTime * pauseController.unpaused);
             if (timer <= 0) { 
                 Destroy(gameObject);
             }

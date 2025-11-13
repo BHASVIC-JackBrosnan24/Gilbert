@@ -12,6 +12,7 @@ public class Hammer : MonoBehaviour
     private GameObject player;
 
     private PlayerStats playerStats;
+    PauseController pauseController;
 
     private Vector3 directionVector; //the direction vector of the direction it should travel in
     [SerializeField]
@@ -19,6 +20,7 @@ public class Hammer : MonoBehaviour
 
     public void Start()
     {
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         mainCamera = Camera.main;
         player = GameObject.Find("Player");
         playerStats = player.GetComponent<PlayerStats>();
@@ -33,15 +35,15 @@ public class Hammer : MonoBehaviour
 
         if (directionVector.x > 0) //checks if it is moving in a positive direction
         {
-            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime; //calculates the new location
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused; //calculates the new location
         }
         else {
-            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
         }
 
-        timer=timer - 1*Time.deltaTime; //decreases the timer
+        timer=timer - 1*(Time.deltaTime * pauseController.unpaused); //decreases the timer
         if (timer <= 0)
         {
             Destroy(this.gameObject);//destorys the hammer

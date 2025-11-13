@@ -16,8 +16,6 @@ public class ButtonController : MonoBehaviour
     [SerializeField]
     GameObject b3; //button 3
 
-
-
     public void choiceMade()
     {
         GameObject clicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject; //gets the button clicked
@@ -40,6 +38,8 @@ public class ButtonController : MonoBehaviour
         Camera cam = Camera.main;
         CameraMovement cameraMovement = cam.GetComponent<CameraMovement>();
         cameraMovement.setMove(true); //lets the camera move again
+        PauseController pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
+        pauseController.unpause();
     }
 
     public void powerUpTime(int[] selection) { //sets the power-up selection
@@ -58,6 +58,8 @@ public class ButtonController : MonoBehaviour
         pos.x = 1000;
         pos.y = 0;
         cam.transform.position = pos; //sets camera to the blue background location
+        PauseController pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
+        pauseController.pause();
 
     }
 

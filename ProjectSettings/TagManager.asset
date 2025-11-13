@@ -13,6 +13,7 @@ TagManager:
   - Button2
   - Button3
   - Button1
+  - PauseController
   layers:
   - Default
   - TransparentFX

@@ -29,10 +29,12 @@ public class ParentRangedEnemy : MonoBehaviour
     private float distanceFromPlayer;
     private bool inRange;
     EnemyProjectile projectileStats;
+    PauseController pauseController;
 
     void Start()
     {
         player = GameObject.Find("Player").transform; //gets the location of the player
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         directionCalc();
     }
 
@@ -52,7 +54,7 @@ public class ParentRangedEnemy : MonoBehaviour
         }
         if (attackTimer >= 0)
         {
-            attackTimer -= Time.deltaTime * (attackRate/1.5f); //decreases timer proportionally to attack rate
+            attackTimer -= Time.deltaTime * (attackRate/1.5f) * pauseController.unpaused; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -85,13 +87,13 @@ public class ParentRangedEnemy : MonoBehaviour
 
         if (directionVector.x > 0)
         {
-            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime;//calculates new location
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;//calculates new location
         }
         else
         {
-            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
         }
 
         transform.position = pos;//sets new location

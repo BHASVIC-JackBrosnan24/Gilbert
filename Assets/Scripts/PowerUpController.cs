@@ -19,11 +19,14 @@ public class PowerUpController : MonoBehaviour
     float randCoordY;
 
     float timer = 0.2f; //timer until next spawn
-
-
+    PauseController pauseController;
+    private void Start()
+    {
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
+    }
     void Update()
     {
-        timer=timer-Time.deltaTime;//decreases timer
+        timer=timer-(Time.deltaTime * pauseController.unpaused);//decreases timer
         if (timer <= 0) {  //when timer runs out, run spawnPowerUp() and reset timer
             spawnPowerUp();
             timer = 0.3f;

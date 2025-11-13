@@ -21,10 +21,13 @@ public class ParentMeleeEnemy : MonoBehaviour
     PlayerStats playerStats;
     PlayerMovement playerMovement;
 
+    PauseController pauseController;
+
     void Start()
     {
         player = GameObject.Find("Player").transform; //gets the location of the player
         directionCalc();
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>(); //Gets the pause controller
     }
 
     private void Update()
@@ -38,7 +41,7 @@ public class ParentMeleeEnemy : MonoBehaviour
             }
         }
         if (attackTimer >= 0) { 
-        attackTimer -= Time.deltaTime*attackRate; //decreases timer proportionally to attack rate
+        attackTimer -= Time.deltaTime*attackRate * pauseController.unpaused; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -79,13 +82,13 @@ public class ParentMeleeEnemy : MonoBehaviour
 
         if (directionVector.x > 0)
         {
-            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime;//calculates new location
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;//calculates new location
         }
         else
         {
-            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime;
-            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime;
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
         }
 
         transform.position = pos;//sets new location

@@ -66,7 +66,7 @@ public class ParentMeleeEnemy : MonoBehaviour
         }
     }
 
-    private void damaged(int hDamage)
+    public void damaged(int hDamage)
     {
         health -= hDamage;//decreases health by the damage of the hammmer
         if (health <= 0)

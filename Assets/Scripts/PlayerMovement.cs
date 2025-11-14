@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Sprite regularSprite;
 
+    [SerializeField]
+    GameObject fireTrail; //the fireTrail gameObject
+
     private void Start()
     {
         playerStats = this.GetComponent<PlayerStats>();
@@ -131,9 +134,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void dash() { //all the code that needs to be called once to set up the dash
+    private void dash() { //all the code that needs to be called once to setS up the dash
         dashing = 0.2f; 
         dashCooldown = 0.65f;
+        if (playerStats.getFireTrail() > 0) {
+            Invoke("spawnFire", 0.03f); //spawns a fireTrail after short intervals
+            Invoke("spawnFire", 0.07f);
+            Invoke("spawnFire", 0.1f);
+            Invoke("spawnFire", 0.13f);
+            Invoke("spawnFire", 0.17f);
+        }
     }
 
     public bool getDashInvincibility() { //true if you are dashing, hence should be invincible
@@ -144,6 +154,11 @@ public class PlayerMovement : MonoBehaviour
             return false; 
         }
             
+    }
+
+    private void spawnFire() { 
+        GameObject fire = Instantiate(fireTrail); //spawns fireTrail at the current location
+        fire.transform.position = transform.position;
     }
 
 }

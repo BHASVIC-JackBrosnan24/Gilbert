@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashingSprite: {fileID: -2994728466119781652, guid: fbc8873d8747d6d4fb54c8b5a41eaf15, type: 3}
   regularSprite: {fileID: -2134862940411826305, guid: adedf86e6d12bd549953f85b12a97d3f, type: 3}
+  fireTrail: {fileID: 3666962555405462212, guid: f0273859e1419064b8e1714519be8470, type: 3}
 --- !u!114 &-7830314830121987159
 MonoBehaviour:
   m_ObjectHideFlags: 0

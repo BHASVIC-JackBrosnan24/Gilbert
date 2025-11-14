@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2505214298459153466}
   - component: {fileID: 5165431898799032170}
   - component: {fileID: 4566274954455980997}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Skeleton Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -123,23 +123,23 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 2176
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1399
+    m_Bits: 1911
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 2176
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 2176
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0

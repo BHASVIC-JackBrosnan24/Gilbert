@@ -55,5 +55,5 @@ MonoBehaviour:
   - Damage
   - Speed
   - Health
-  - DashDamage
-  - PassiveHealing
+  - Fire Step
+  - Passive Healing

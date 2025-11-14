@@ -14,7 +14,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private GameObject levelUpEffect;
 
-    private int[] hammerPowerUps; //array of power-ups
+    private PowerUpController powerUpController;
+
+    private int[][] hammerPowerUps; //array of power-ups
     private int nextFreeHPowerUp = 0; //the index of where the next power-up will go
 
     private int[] charPowerUps; //array of power-ups
@@ -27,6 +29,7 @@ public class PlayerStats : MonoBehaviour
     private int nextLevelBarrier = 10;
     private int passiveHealing = 0; //value relating to how much the player heals
     private float healTimer=4;//timer for healing
+    private int fireTrail = 0;//value for fire trail
 
 
     private int randP1;
@@ -37,8 +40,10 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        hammerPowerUps = new int[100];
-        charPowerUps = new int[100];
+        hammerPowerUps[0] = new int[500];
+        hammerPowerUps[1] = new int[500];
+        charPowerUps = new int[500];
+        powerUpController = GameObject.FindWithTag("Power-Up Controller").GetComponent<PowerUpController>();
     }
 
     // Update is called once per frame
@@ -157,8 +162,13 @@ public class PlayerStats : MonoBehaviour
 
     public void addPowerUp(int powerType) //code for adding power-up to power-up list
     {
-        hammerPowerUps[nextFreeHPowerUp] = powerType;
+        hammerPowerUps[nextFreeHPowerUp][0] = powerType;
+        hammerPowerUps[nextFreeHPowerUp][1] = powerUpController.getProbability(powerType);
         nextFreeHPowerUp += 1; //makes sure the next power-up goes into next index
+    }
+
+    public int getFireTrail() { 
+        return fireTrail;
     }
 
     public void charPowerUp(int powerType) //code for adding character power-up to power-up list, and changing their stats
@@ -173,16 +183,16 @@ public class PlayerStats : MonoBehaviour
         {
             speed += 1;
         }
-        else if (powerType == 2)
-        { //number assossiated with health up
+        else if (powerType == 2) //number assossiated with health up
+        {
             health += 25;
             maxHealth += 25;
         }
-        else if (powerType == 3)
+        else if (powerType == 3) //number for fire trail
         {
-            //dash damage
+            fireTrail += 1;
         }
-        else if (powerType == 4)
+        else if (powerType == 4) //number for passive healing
         {
             passiveHealing += 1;
         }

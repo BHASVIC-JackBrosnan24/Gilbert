@@ -25,6 +25,9 @@ public class PlayerStats : MonoBehaviour
     private int health; //current health of the player
     private int level = 1; //level of the player
     private int nextLevelBarrier = 10;
+    private int passiveHealing = 0; //value relating to how much the player heals
+    private float healTimer=4;//timer for healing
+
 
     private int randP1;
     private int randP2;
@@ -41,7 +44,15 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        healTimer -= Time.deltaTime;
+        if (healTimer <= 0) {
+            health += 2 * passiveHealing; //heals every 4 seconds
+            healTimer = 3;
+        }
+        if (health > maxHealth)
+        {
+            health = maxHealth; //ensures health never ursurps maxHealth
+        }
     }
 
     public float getSpeed() { //returns speed
@@ -157,6 +168,23 @@ public class PlayerStats : MonoBehaviour
         if (powerType == 0) //number assossiated with damage up
         {
             damage += 3;
+        }
+        else if (powerType == 1) //number assossiated with speed up
+        {
+            speed += 1;
+        }
+        else if (powerType == 2)
+        { //number assossiated with health up
+            health += 25;
+            maxHealth += 25;
+        }
+        else if (powerType == 3)
+        {
+            //dash damage
+        }
+        else if (powerType == 4)
+        {
+            passiveHealing += 1;
         }
 
     }

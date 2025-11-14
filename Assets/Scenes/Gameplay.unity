@@ -216,7 +216,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7830314830121987159, guid: 057eb27491060344ab010d3fe8d0fddd, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: -992505033272675768, guid: 057eb27491060344ab010d3fe8d0fddd, type: 3}
       propertyPath: m_Size.x
@@ -1612,6 +1612,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2017610532920707884, guid: 2ea74ab301bfdfa40b0957a9c798712b, type: 3}
+      propertyPath: popUp
+      value: 
+      objectReference: {fileID: 6769986235027506132, guid: 94b8a660504a2d241a91c03246dd2374, type: 3}
+    - target: {fileID: 2017610532920707884, guid: 2ea74ab301bfdfa40b0957a9c798712b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1391324734}
@@ -1848,7 +1852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2085625596}
   - component: {fileID: 2085625595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Screenshot 2025-11-12 155522_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1919,7 +1923,7 @@ Transform:
   m_GameObject: {fileID: 2085625594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1002.6695, y: 4.6149664, z: 9.929651}
+  m_LocalPosition: {x: 1002.6695, y: 4.6149664, z: 0}
   m_LocalScale: {x: 11.536066, y: 11.9851, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

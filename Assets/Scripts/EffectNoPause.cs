@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class EffectScript : MonoBehaviour
+public class EffectNoPauset : MonoBehaviour
 {
     [SerializeField]
     private float timer; //timer until it despawns
+
+    [SerializeField]
+    private float minOpacity; //minimum opacity
 
     float maxTimer;
     float opacity = 1; //opacity
@@ -19,9 +22,13 @@ public class EffectScript : MonoBehaviour
     void Update()
     {
         spriteRenderer.color = new Color(1f, 1f, 1f, opacity); //sets the opacity to the new opacity
-        opacity = opacity-((Time.deltaTime / maxTimer) * pauseController.unpaused); //decreases opacity
-        timer = timer-(Time.deltaTime * pauseController.unpaused); //decreases timer
-        if (timer <= 0) { 
+        if (opacity > minOpacity)
+        {
+            opacity = opacity - (Time.deltaTime / maxTimer); //decreases opacity
+        }
+        timer = timer - Time.deltaTime; //decreases timer
+        if (timer <= 0)
+        {
             Destroy(gameObject); //destroys game object if the timer runs out
         }
     }

@@ -16,6 +16,9 @@ public class ButtonController : MonoBehaviour
     [SerializeField]
     GameObject b3; //button 3
 
+    [SerializeField]
+    GameObject popUp;
+
     public void choiceMade()
     {
         GameObject clicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject; //gets the button clicked
@@ -55,10 +58,6 @@ public class ButtonController : MonoBehaviour
         powerUpSelection[2] = selection[2];
         powerUpSelection[3] = selection[3];
 
-        GameObject bOne = Instantiate(b1); //creates the buttons
-        GameObject bTwo = Instantiate(b2);
-        GameObject bThree = Instantiate(b3);
-
         Camera cam = Camera.main;
         CameraMovement cameraMovement = cam.GetComponent<CameraMovement>();
         cameraMovement.setMove(false); //stops camera from moving
@@ -68,10 +67,18 @@ public class ButtonController : MonoBehaviour
         cam.transform.position = pos; //sets camera to the blue background location
         PauseController pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         pauseController.pause();
-
+        
+        GameObject effect = Instantiate(popUp); //creates the effect
+        Invoke("instantiateButton", 0.5f);
     }
 
     public int[] getSelection() { //getter for powerUpSelection array
         return powerUpSelection;
+    }
+
+    private void instantiateButton() {
+        GameObject bOne = Instantiate(b1); //creates the buttons
+        GameObject bTwo = Instantiate(b2);
+        GameObject bThree = Instantiate(b3);
     }
 }

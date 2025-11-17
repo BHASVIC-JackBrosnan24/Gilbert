@@ -51,6 +51,12 @@ MonoBehaviour:
   - Explosive
   - Hypno
   - T-Rex
+  hammerProb:
+  - 15
+  - 10
+  - 5
+  - 1
+  - 0.1
   characterPowerUps:
   - Damage
   - Speed

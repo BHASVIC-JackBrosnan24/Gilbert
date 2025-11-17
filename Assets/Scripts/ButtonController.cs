@@ -8,7 +8,6 @@ public class ButtonController : MonoBehaviour
 
     private int choice;
 
-
     [SerializeField]
     GameObject b1; //button 1
     [SerializeField]

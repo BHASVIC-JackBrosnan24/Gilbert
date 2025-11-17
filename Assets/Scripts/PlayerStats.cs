@@ -16,7 +16,9 @@ public class PlayerStats : MonoBehaviour
 
     private PowerUpController powerUpController;
 
-    private int[][] hammerPowerUps; //array of power-ups
+    private int[] hammerPowerUps; //array of power-ups
+    private float[] hammerProb;
+    float sum=0;
     private int nextFreeHPowerUp = 0; //the index of where the next power-up will go
 
     private int[] charPowerUps; //array of power-ups
@@ -28,7 +30,7 @@ public class PlayerStats : MonoBehaviour
     private int level = 1; //level of the player
     private int nextLevelBarrier = 10;
     private int passiveHealing = 0; //value relating to how much the player heals
-    private float healTimer=4;//timer for healing
+    private float healTimer = 4;//timer for healing
     private int fireTrail = 0;//value for fire trail
 
 
@@ -40,10 +42,10 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        hammerPowerUps[0] = new int[500];
-        hammerPowerUps[1] = new int[500];
+        hammerPowerUps = new int[500];
+        hammerProb = new float[500];
         charPowerUps = new int[500];
-        powerUpController = GameObject.FindWithTag("Power-Up Controller").GetComponent<PowerUpController>();
+        powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
     }
 
     // Update is called once per frame
@@ -162,13 +164,26 @@ public class PlayerStats : MonoBehaviour
 
     public void addPowerUp(int powerType) //code for adding power-up to power-up list
     {
-        hammerPowerUps[nextFreeHPowerUp][0] = powerType;
-        hammerPowerUps[nextFreeHPowerUp][1] = powerUpController.getProbability(powerType);
+        hammerPowerUps[nextFreeHPowerUp] = powerType;
+        hammerProb[nextFreeHPowerUp] = powerUpController.getProbability(powerType);
+        sum += hammerProb[nextFreeHPowerUp]; //increases the sum of all probilities
         nextFreeHPowerUp += 1; //makes sure the next power-up goes into next index
     }
 
-    public int getFireTrail() { 
+    public int getFireTrail() {
         return fireTrail;
+    }
+
+    public int[] getHammerPowers() { //getter for hammer power-up list
+        return hammerPowerUps;
+    }
+
+    public float[] getProb() { //getter for hammer power-up probabilities
+        return hammerProb;
+    }
+
+    public float getSum() {
+        return sum;
     }
 
     public void charPowerUp(int powerType) //code for adding character power-up to power-up list, and changing their stats

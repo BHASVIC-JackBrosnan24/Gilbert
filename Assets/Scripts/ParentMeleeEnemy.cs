@@ -24,6 +24,9 @@ public class ParentMeleeEnemy : MonoBehaviour
 
     PauseController pauseController;
 
+    int electrocuted = 0; //turns to 1 when electrocuted
+    int frozen = 1; //stops the enemy from moving 
+
     void Start()
     {
         player = GameObject.Find("Player").transform; //gets the location of the player
@@ -42,7 +45,7 @@ public class ParentMeleeEnemy : MonoBehaviour
             }
         }
         if (attackTimer >= 0) { 
-        attackTimer -= Time.deltaTime*attackRate * pauseController.unpaused; //decreases timer proportionally to attack rate
+        attackTimer -= Time.deltaTime*attackRate * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -83,13 +86,13 @@ public class ParentMeleeEnemy : MonoBehaviour
 
         if (directionVector.x > 0)
         {
-            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;//calculates new location
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;//calculates new location
         }
         else
         {
-            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
-            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;
         }
 
         transform.position = pos;//sets new location
@@ -109,5 +112,32 @@ public class ParentMeleeEnemy : MonoBehaviour
             playerStats.damaged(damage); //damages player
             attackTimer += 1;
         }
+    }
+    public void electrocute()
+    {
+        print(1);
+        if (electrocuted != 1)
+        { //checks if the enemy has been electrocuted before
+            frozen = 0; //freezes the enemy
+            Invoke("unfreeze", 0.8f); //unfreezes the enemy in 0.8 seconds
+            print(2);
+        }
+        electrocuted = 1;
+        Invoke("unelectrocute", 2.5f);
+    }
+
+    private void unelectrocute()
+    {
+        electrocuted = 0;
+    }
+    public int getElectrocuted()
+    {
+        print(3);
+        return electrocuted;
+    }
+
+    public void unfreeze()
+    {
+        frozen = 1;
     }
 }

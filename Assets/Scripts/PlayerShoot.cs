@@ -47,6 +47,10 @@ public class PlayerShoot : MonoBehaviour
                         case 0:
                             hammer.AddComponent<PUFire>();
                             break;
+                         case 1:
+                            hammer.AddComponent<PUElectric>();
+                            break;
+
                     }
                 }
             }

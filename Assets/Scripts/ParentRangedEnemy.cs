@@ -31,6 +31,9 @@ public class ParentRangedEnemy : MonoBehaviour
     EnemyProjectile projectileStats;
     PauseController pauseController;
 
+    int electrocuted = 0; //turns to 1 when electrocuted
+    int frozen = 1; //stops the enemy from moving when frozen=1
+
     void Start()
     {
         player = GameObject.Find("Player").transform; //gets the location of the player
@@ -54,7 +57,7 @@ public class ParentRangedEnemy : MonoBehaviour
         }
         if (attackTimer >= 0)
         {
-            attackTimer -= Time.deltaTime * (attackRate/1.5f) * pauseController.unpaused; //decreases timer proportionally to attack rate
+            attackTimer -= Time.deltaTime * (attackRate/1.5f) * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -87,13 +90,13 @@ public class ParentRangedEnemy : MonoBehaviour
 
         if (directionVector.x > 0)
         {
-            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
-            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;//calculates new location
+            pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;//calculates new location
         }
         else
         {
-            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused;
-            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused;
+            pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;
         }
 
         transform.position = pos;//sets new location
@@ -128,5 +131,29 @@ public class ParentRangedEnemy : MonoBehaviour
 
     public float getRange() {
         return range;
+    }
+
+    public void electrocute() {
+        if (electrocuted != 1) { //checks if the enemy has been electrocuted before
+            frozen = 0; //freezes the enemy
+            Invoke("unfreeze", 1.5f); //unfreezes the enemy in 0.8 seconds
+        }
+        electrocuted = 1;
+        Invoke("unelectrocute", 3f);
+    }
+
+    private void unelectrocute()
+    {
+        electrocuted = 0;
+    }
+
+    public int getElectrocuted()
+    {
+        return electrocuted;
+    }
+
+    public void unfreeze()
+    {
+        frozen = 1;
     }
 }

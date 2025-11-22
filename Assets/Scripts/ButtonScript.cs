@@ -29,9 +29,9 @@ public class ButtonScript : MonoBehaviour
         selection = buttonControllerScript.getSelection(); //gets the selection array from the BC
         powerType = selection[buttonNum]; //gets the power type in the correct index
         hammerOrChar = selection[3];
-        Vector3 position = new Vector3(411f,270-(90*buttonNum)); //calcs  correct position for the specific button
+        Vector3 position = new Vector3(0f,100-(100*buttonNum)); //calcs  correct position for the specific button
         buttonRectTransform.position = position; //sets it to correct position
-        this.transform.SetParent(canvas.transform); //makes the canvas its parent
+        this.transform.SetParent(canvas.transform, false); //makes the canvas its parent
         PowerUpController powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
         if (hammerOrChar == 0)
         {

@@ -24,24 +24,23 @@ public class ElectricScript : MonoBehaviour
         {
             melee = collision.gameObject.GetComponent<ParentMeleeEnemy>();
             ranged = collision.gameObject.GetComponent<ParentRangedEnemy>();
-            print(4);
             if (melee != null)
             {
-                melee.damaged(3);
+                melee.damaged(2);
                 if (melee.getElectrocuted() == 0) {
                     GameObject elecBall = Instantiate(electricity); //creates more electricity if it hits an unelectrocuted enemy
-                    elecBall.transform.position = transform.position;
+                    elecBall.transform.position = collision.transform.position;
                 }
                 melee.electrocute(); //electrocutes the enemy
                 
             }
             else if (ranged != null)
             {
-                ranged.damaged(3);
+                ranged.damaged(2);
                 if (ranged.getElectrocuted() == 0)
                 {
                     GameObject elecBall = Instantiate(electricity);
-                    elecBall.transform.position = transform.position;
+                    elecBall.transform.position = collision.transform.position;
                 }
                 ranged.electrocute();
             }

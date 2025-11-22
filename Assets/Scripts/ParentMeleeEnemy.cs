@@ -115,12 +115,10 @@ public class ParentMeleeEnemy : MonoBehaviour
     }
     public void electrocute()
     {
-        print(1);
         if (electrocuted != 1)
         { //checks if the enemy has been electrocuted before
             frozen = 0; //freezes the enemy
             Invoke("unfreeze", 0.8f); //unfreezes the enemy in 0.8 seconds
-            print(2);
         }
         electrocuted = 1;
         Invoke("unelectrocute", 2.5f);
@@ -132,7 +130,6 @@ public class ParentMeleeEnemy : MonoBehaviour
     }
     public int getElectrocuted()
     {
-        print(3);
         return electrocuted;
     }
 

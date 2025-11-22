@@ -51,7 +51,7 @@ MonoBehaviour:
   damage: 10
   speed: 2
   attackRate: 2
-  expYield: 2
+  expYield: 0
   range: 5.5
   projectileSpeed: 8
   projectile: {fileID: 7914927480300770391, guid: bd4e0aabb4cc5d748a2ff2c86370db05, type: 3}

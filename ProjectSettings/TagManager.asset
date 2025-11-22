@@ -15,6 +15,7 @@ TagManager:
   - Button1
   - PauseController
   - PowerUpController
+  - HealthBar
   layers:
   - Default
   - TransparentFX

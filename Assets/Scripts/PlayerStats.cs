@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
 
     private PowerUpController powerUpController;
 
+    private HealthBar healthBar;
+
     private int[] hammerPowerUps; //array of power-ups
     private float[] hammerProb;
     float sum=0;
@@ -46,6 +48,9 @@ public class PlayerStats : MonoBehaviour
         hammerProb = new float[500];
         charPowerUps = new int[500];
         powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
+        healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+        healthBar.setHealth(health);
+        healthBar.setMax(maxHealth);
     }
 
     // Update is called once per frame
@@ -102,6 +107,7 @@ public class PlayerStats : MonoBehaviour
 
     public void damaged(int damaged) {
         health = health - damaged; //reduces player health by damage
+        healthBar.setHealth(health);
         if (health <= 0) { //if the player should die from the attack
             Destroy(this.gameObject); //destroys player
         }

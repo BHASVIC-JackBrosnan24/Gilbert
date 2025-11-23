@@ -170,4 +170,4 @@ MonoBehaviour:
   damage: 8
   speed: 2.3
   attackRate: 5
-  expYield: 0
+  expYield: 3

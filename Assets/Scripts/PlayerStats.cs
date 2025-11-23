@@ -17,6 +17,8 @@ public class PlayerStats : MonoBehaviour
     private PowerUpController powerUpController;
 
     private HealthBar healthBar;
+    private EXPBar expBar;
+    PauseController pauseController;
 
     private int[] hammerPowerUps; //array of power-ups
     private float[] hammerProb;
@@ -49,21 +51,30 @@ public class PlayerStats : MonoBehaviour
         charPowerUps = new int[500];
         powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
         healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+        expBar = GameObject.FindWithTag("EXPBar").GetComponent<EXPBar>();
         healthBar.setHealth(health);
         healthBar.setMax(maxHealth);
+        expBar.setEXP(exp);
+        expBar.setBoundary(nextLevelBarrier);
+        pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healTimer -= Time.deltaTime;
-        if (healTimer <= 0) {
-            health += 2 * passiveHealing; //heals every 4 seconds
-            healTimer = 3;
-        }
-        if (health > maxHealth)
+        if (pauseController.unpaused == 1)
         {
-            health = maxHealth; //ensures health never ursurps maxHealth
+            healTimer -= Time.deltaTime;
+            if (healTimer <= 0)
+            {
+                health += 2 * passiveHealing; //heals every 4 seconds
+                healTimer = 3;
+            }
+            if (health > maxHealth)
+            {
+                health = maxHealth; //ensures health never ursurps maxHealth
+            }
+            healthBar.setHealth(health);
         }
     }
 
@@ -102,6 +113,7 @@ public class PlayerStats : MonoBehaviour
     public void setEXP(int EXP) //sets exp
     {
         exp = EXP;
+        expBar.setEXP(exp);
         levelCalc();
     }
 
@@ -124,7 +136,9 @@ public class PlayerStats : MonoBehaviour
         {
             level += 1; //increases level by 1
             exp = exp - nextLevelBarrier; //resets exp
+            expBar.setEXP(exp);
             nextLevelBarrier = (nextLevelBarrier + 5) * level; //increases exp needed for next level
+            expBar.setBoundary(nextLevelBarrier);
             GameObject lvlUp = Instantiate(levelUpEffect); //creates the level up effect
             Vector2 lvlUpPos = transform.position;
             lvlUpPos.y = lvlUpPos.y + 1;

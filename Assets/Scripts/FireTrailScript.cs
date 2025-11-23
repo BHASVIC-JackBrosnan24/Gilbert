@@ -30,7 +30,6 @@ public class FireTrailScript : MonoBehaviour
         }
         if (attackTimer > 0) {  //decreases attack timer
             attackTimer-= Time.deltaTime;
-            print(4);
         }
     }
 
@@ -40,16 +39,13 @@ public class FireTrailScript : MonoBehaviour
         {
             ParentMeleeEnemy melee = collision.gameObject.GetComponent<ParentMeleeEnemy>();  //gets the melee enemy script
             ParentRangedEnemy ranged = collision.gameObject.GetComponent<ParentRangedEnemy>(); //gets the ranged enemy script
-            print(3);
 
             if (melee != null && attackTimer <=0) {
                 melee.damaged(playerStats.getFireTrail());
-                print(2);
                 attackTimer = 0.25f;
             }
             else if (ranged != null&&attackTimer<=0) {
                 ranged.damaged(playerStats.getFireTrail());
-                print(1);
                 attackTimer = 0.25f;
             }
         }

@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     private HealthBar healthBar;
     private EXPBar expBar;
     PauseController pauseController;
+    SceneChanger sceneChanger;
 
     private int[] hammerPowerUps; //array of power-ups
     private float[] hammerProb;
@@ -57,6 +58,7 @@ public class PlayerStats : MonoBehaviour
         expBar.setEXP(exp);
         expBar.setBoundary(nextLevelBarrier);
         pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
+        sceneChanger = GameObject.Find("SceneChanger").GetComponent<SceneChanger>();
     }
 
     // Update is called once per frame
@@ -122,6 +124,7 @@ public class PlayerStats : MonoBehaviour
         healthBar.setHealth(health);
         if (health <= 0) { //if the player should die from the attack
             Destroy(this.gameObject); //destroys player
+            sceneChanger.deathScreen();
         }
     }
 

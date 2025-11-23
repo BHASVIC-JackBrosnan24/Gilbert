@@ -17,6 +17,7 @@ TagManager:
   - PowerUpController
   - HealthBar
   - EXPBar
+  - SceneChanger
   layers:
   - Default
   - TransparentFX

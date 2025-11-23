@@ -36,11 +36,22 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (dashing == 0f) {
+            speed = playerStats.getSpeed();
+        }
         speedV = speed; 
         speedH = speed; 
         float h = Input.GetAxis("Horizontal"); //equals 1 if A or D are pressed
         float v = Input.GetAxis("Vertical"); //equals 1 if W or S are pressed
         Vector2 pos = transform.position;
+
+        if (h > 0f)
+        {
+            transform.localScale = new Vector3(0.7688256f, 0.5f, 1);
+        }
+        else if (h < 0f) { 
+            transform.localScale = new Vector3(-0.7688256f, 0.5f,1); //flips the sprite if you are travelling left
+        }
 
         if (dashing > 0f)
         {
@@ -126,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            pos.x += h * speedH * Time.deltaTime * pauseController.unpaused; //calculates your new location
+        pos.x += h * speedH * Time.deltaTime * pauseController.unpaused; //calculates your new location
         pos.y += v * speedV * Time.deltaTime * pauseController.unpaused;
 
 

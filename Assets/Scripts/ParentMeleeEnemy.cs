@@ -21,6 +21,7 @@ public class ParentMeleeEnemy : MonoBehaviour
     private float direction;
     PlayerStats playerStats;
     PlayerMovement playerMovement;
+    Vector3 scale;
 
     PauseController pauseController;
 
@@ -32,6 +33,7 @@ public class ParentMeleeEnemy : MonoBehaviour
         player = GameObject.Find("Player").transform; //gets the location of the player
         directionCalc();
         pauseController = GameObject.Find("PauseController").GetComponent<PauseController>(); //Gets the pause controller
+        scale = transform.localScale;
     }
 
     private void Update()
@@ -88,11 +90,13 @@ public class ParentMeleeEnemy : MonoBehaviour
         {
             pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
             pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;//calculates new location
+            transform.localScale = new Vector3( scale.x, scale.y, scale.z );
         }
         else
         {
             pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
             pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            transform.localScale = new Vector3(-1 * scale.x, scale.y, scale.z);
         }
 
         transform.position = pos;//sets new location

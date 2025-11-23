@@ -50,6 +50,8 @@ public class Hammer : MonoBehaviour
         }
 
             transform.position = pos; //sets the new position for the hammer
+
+        transform.Rotate(0, 0, -720 * Time.deltaTime * pauseController.unpaused); //rotates the hammer by 360 every second
     }
 
     public int getDamage()

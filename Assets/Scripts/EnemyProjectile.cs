@@ -78,5 +78,6 @@ public class EnemyProjectile : MonoBehaviour
     { //method for calculating the direction
         directionVector = (player.transform.position - enemy.transform.position).normalized; //calculates the direction vector
         direction = Mathf.Atan(directionVector.y / directionVector.x); //calculates the angle for the direction the projectile shoould travel in
+        this.transform.Rotate(0,0,180*direction/Mathf.PI); //rotates the angle
     }
 }

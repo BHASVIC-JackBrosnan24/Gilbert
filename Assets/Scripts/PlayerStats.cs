@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private GameObject levelUpEffect;
 
+    [SerializeField]
+    private GameObject healEffect;
+
     private PowerUpController powerUpController;
 
     private HealthBar healthBar;
@@ -71,6 +74,7 @@ public class PlayerStats : MonoBehaviour
             {
                 health += 2 * passiveHealing; //heals every 4 seconds
                 healTimer = 3;
+                GameObject heal = Instantiate(healEffect,transform); //instantiates a heal effect
             }
             if (health > maxHealth)
             {
@@ -225,6 +229,7 @@ public class PlayerStats : MonoBehaviour
         {
             health += 25;
             maxHealth += 25;
+            healthBar.setMax(maxHealth);
         }
         else if (powerType == 3) //number for fire trail
         {

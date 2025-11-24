@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyProjectile : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class EnemyProjectile : MonoBehaviour
     float speed; //how fast the projectile should travel
     float direction; //the direction the projectile will travel in
     float range; //how far the projectile will travel 
+
+    [SerializeField]
+    int laserOrLightning;
 
     private GameObject player;
 
@@ -26,10 +30,20 @@ public class EnemyProjectile : MonoBehaviour
         pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
         enemy = thisEnemy;
         enemyStats = enemy.GetComponent<ParentRangedEnemy>();
+        if (enemyStats == null)
+        {
+            ZeusScript zeusStats = enemy.GetComponent<ZeusScript>();
+            damage = zeusStats.getDamage(laserOrLightning);
+            speed = zeusStats.getProjectileSpeed(laserOrLightning);
+            range = zeusStats.getRange(laserOrLightning);
+        }
+        else
+        {
+            speed = enemyStats.getProjectileSpeed(); //gets the projectile speed from the stats script
+            damage = enemyStats.getDamage(); //gets the damage from the stats script
+            range = enemyStats.getRange();
+        }
         player = GameObject.Find("Player");
-        speed = enemyStats.getProjectileSpeed(); //gets the projectile speed from the stats script
-        damage = enemyStats.getDamage(); //gets the damage from the stats script
-        range = enemyStats.getRange();
         ready = true;
         timer = 1.2f*(range / speed); //uses time=distance/speed to calc how long it should travel for, plus a little extra
         directionCalc();
@@ -79,5 +93,9 @@ public class EnemyProjectile : MonoBehaviour
         directionVector = (player.transform.position - enemy.transform.position).normalized; //calculates the direction vector
         direction = Mathf.Atan(directionVector.y / directionVector.x); //calculates the angle for the direction the projectile shoould travel in
         this.transform.Rotate(0,0,180*direction/Mathf.PI); //rotates the angle
+        if (player.transform.position.x < transform.position.x) {
+            Vector3 scale = transform.localScale;
+            transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+        }
     }
 }

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  damage: 6
+  damage: 4
   maxHealth: 75
   levelUpEffect: {fileID: 328142001377856254, guid: 4894c7ddfb9901c4fbe56071533372b0, type: 3}
   healEffect: {fileID: 2416825102310953409, guid: 4eddea3931439164d8c6c1dc0311e5f0, type: 3}
@@ -199,7 +199,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.273321, y: 0}
+  m_Offset: {x: 0.04507091, y: 0.034423113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.29180643, y: 0.47618744}
@@ -209,5 +209,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9033581, y: 2.15}
+  m_Size: {x: 0.4655699, y: 1.7751694}
   m_EdgeRadius: 0

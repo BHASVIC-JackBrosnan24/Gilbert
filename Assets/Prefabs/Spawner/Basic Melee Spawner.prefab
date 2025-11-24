@@ -49,5 +49,5 @@ MonoBehaviour:
   - {fileID: 4834779680721585408, guid: e4f34e586d9efbd418db355e4781aecc, type: 3}
   spawnMaxCounts: 0200000001000000
   spawnMinCounts: 0100000001000000
-  spawnRate: 5
+  spawnRate: 2
   timeUntilSpawn: 0

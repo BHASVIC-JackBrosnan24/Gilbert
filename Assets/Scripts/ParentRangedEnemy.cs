@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ParentRangedEnemy : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ParentRangedEnemy : MonoBehaviour
     private GameObject damageEffect;
 
     private float attackTimer = 0;
+    Vector3 scale;
 
     private Transform player;
     private Vector3 directionVector;
@@ -40,6 +42,7 @@ public class ParentRangedEnemy : MonoBehaviour
     {
         player = GameObject.Find("Player").transform; //gets the location of the player
         pauseController = GameObject.Find("PauseController").GetComponent<PauseController>();
+        scale = transform.localScale;
         directionCalc();
     }
 
@@ -59,7 +62,7 @@ public class ParentRangedEnemy : MonoBehaviour
         }
         if (attackTimer >= 0)
         {
-            attackTimer -= Time.deltaTime * (attackRate/1.5f) * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
+            attackTimer -= Time.deltaTime * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -96,11 +99,13 @@ public class ParentRangedEnemy : MonoBehaviour
         {
             pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
             pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;//calculates new location
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
         }
         else
         {
             pos.x += speed * -Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
             pos.y += speed * -Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;
+            transform.localScale = new Vector3(-scale.x, scale.y, scale.z); //flips it into the right direction
         }
 
         transform.position = pos;//sets new location

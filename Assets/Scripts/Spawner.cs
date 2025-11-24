@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
     IEnumerator Spawning() {
         while (player!=null) 
         {
-            yield return new WaitForSeconds(5/spawnRate); //makes it wait for the spawn rate before 
+            yield return new WaitForSeconds(spawnRate); //makes it wait for the spawn rate before 
             if (timerTimer.getTime() < 300-timeUntilSpawn && pauseController.unpaused==1)
             {
                 Vector2 newSpawnerPos = player.transform.position; //new position is the player's position

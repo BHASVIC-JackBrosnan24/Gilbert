@@ -35,7 +35,7 @@ public class PowerUpController : MonoBehaviour
         timer=timer-(Time.deltaTime * pauseController.unpaused);//decreases timer
         if (timer <= 0) {  //when timer runs out, run spawnPowerUp() and reset timer
             spawnPowerUp();
-            timer = 0.3f;
+            timer = 2f;
         }
     }
 

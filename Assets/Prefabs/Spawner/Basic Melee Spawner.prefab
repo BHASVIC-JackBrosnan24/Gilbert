@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTable:
   - {fileID: 4834779680721585408, guid: 1d4e234c052668f4fab8a4f8ed10d758, type: 3}
-  - {fileID: 6217501893108040318, guid: 3039e53ac8a838b41b0d74ab9df0daf1, type: 3}
+  - {fileID: 4834779680721585408, guid: e4f34e586d9efbd418db355e4781aecc, type: 3}
   spawnMaxCounts: 0200000001000000
   spawnMinCounts: 0100000001000000
   spawnRate: 5

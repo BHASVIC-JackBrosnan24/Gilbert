@@ -13,6 +13,8 @@ public class ParentMeleeEnemy : MonoBehaviour
     private float attackRate; //how fast the enemy will attack
     [SerializeField]
     private int expYield;//how much exp the enemy gives
+    [SerializeField]
+    private GameObject damageEffect;
 
     private float attackTimer = 0;
 
@@ -79,6 +81,8 @@ public class ParentMeleeEnemy : MonoBehaviour
             GameObject plyr = GameObject.Find("Player"); //gets the player
             PlayerStats playerStats = plyr.GetComponent<PlayerStats>(); //gets the players stats
             playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
+            GameObject damageSprite = Instantiate(damageEffect);
+            damageSprite.transform.position = transform.position;
             Destroy(this.gameObject);//destroys this game object
         }
     }

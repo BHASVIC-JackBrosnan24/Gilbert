@@ -18,6 +18,8 @@ public class ParentRangedEnemy : MonoBehaviour
     private float projectileSpeed;//how fast the projectile will travel
     [SerializeField]
     private GameObject projectile; //the projectile it will shoot
+    [SerializeField]
+    private GameObject damageEffect;
 
     private float attackTimer = 0;
 
@@ -80,6 +82,8 @@ public class ParentRangedEnemy : MonoBehaviour
             GameObject plyr = GameObject.Find("Player"); //gets the player
             PlayerStats playerStats = plyr.GetComponent<PlayerStats>(); //gets the players stats
             playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
+            GameObject damageSprite = Instantiate(damageEffect);
+            damageSprite.transform.position = transform.position;
             Destroy(this.gameObject);//destroys this game object
         }
     }

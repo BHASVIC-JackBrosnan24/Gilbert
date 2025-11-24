@@ -17,6 +17,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private GameObject healEffect;
 
+    [SerializeField]
+    private GameObject damageEffect;
+
     private PowerUpController powerUpController;
 
     private HealthBar healthBar;
@@ -69,18 +72,23 @@ public class PlayerStats : MonoBehaviour
     {
         if (pauseController.unpaused == 1)
         {
-            healTimer -= Time.deltaTime;
-            if (healTimer <= 0)
+            if (passiveHealing > 0)
             {
-                health += 2 * passiveHealing; //heals every 4 seconds
-                healTimer = 3;
-                GameObject heal = Instantiate(healEffect,transform); //instantiates a heal effect
+                healTimer -= Time.deltaTime;
+                if (healTimer <= 0)
+                {
+                    health += 2 * passiveHealing; //heals every 4 seconds
+                    healTimer = 3;
+                    GameObject heal = Instantiate(healEffect); //instantiates a heal effect
+                    Vector3 healPos = transform.position;
+                    heal.transform.position = healPos;
+                }
+                if (health > maxHealth)
+                {
+                    health = maxHealth; //ensures health never ursurps maxHealth
+                }
+                healthBar.setHealth(health);
             }
-            if (health > maxHealth)
-            {
-                health = maxHealth; //ensures health never ursurps maxHealth
-            }
-            healthBar.setHealth(health);
         }
     }
 
@@ -126,6 +134,10 @@ public class PlayerStats : MonoBehaviour
     public void damaged(int damaged) {
         health = health - damaged; //reduces player health by damage
         healthBar.setHealth(health);
+
+        GameObject damageSprite = Instantiate(damageEffect);
+        damageSprite.transform.position = transform.position;
+
         if (health <= 0) { //if the player should die from the attack
             Destroy(this.gameObject); //destroys player
             sceneChanger.deathScreen();

@@ -123,6 +123,8 @@ MonoBehaviour:
   damage: 6
   maxHealth: 75
   levelUpEffect: {fileID: 328142001377856254, guid: 4894c7ddfb9901c4fbe56071533372b0, type: 3}
+  healEffect: {fileID: 2416825102310953409, guid: 4eddea3931439164d8c6c1dc0311e5f0, type: 3}
+  damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
 --- !u!50 &3869838031219717768
 Rigidbody2D:
   serializedVersion: 5
@@ -200,7 +202,7 @@ BoxCollider2D:
   m_Offset: {x: -0.273321, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.29180643, y: 0.47618744}
     oldSize: {x: 1.37, y: 2.08}
     newSize: {x: 1.45, y: 2.15}
     adaptiveTilingThreshold: 0.5

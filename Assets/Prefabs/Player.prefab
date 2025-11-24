@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  damage: 4
+  damage: 6
   maxHealth: 75
   levelUpEffect: {fileID: 328142001377856254, guid: 4894c7ddfb9901c4fbe56071533372b0, type: 3}
   healEffect: {fileID: 2416825102310953409, guid: 4eddea3931439164d8c6c1dc0311e5f0, type: 3}

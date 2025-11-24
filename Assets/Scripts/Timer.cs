@@ -25,6 +25,9 @@ public class Timer : MonoBehaviour
         timer=timer-(Time.deltaTime * pauseController.unpaused);
         intTime = (int)timer;
         m_Object.text = intTime.ToString();
+        if (timer <= 0) {
+            m_Object.fontSize = 0;
+        }
     }
 
     public int getTime() {

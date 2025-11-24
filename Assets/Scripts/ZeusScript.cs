@@ -57,13 +57,13 @@ public class ZeusScript : MonoBehaviour
         if (laserTimer <= 0 && (player.position - transform.position).magnitude < 15) //checks if you are in range
         {
             Invoke("fireLasers", 0.1f);
-            Invoke("fireLasers", 0.12f);
-            Invoke("fireLasers", 0.14f);
-            Invoke("fireLasers", 0.16f);
-            Invoke("fireLasers", 0.18f);
+            Invoke("fireLasers", 0.15f);
             Invoke("fireLasers", 0.2f);
-            Invoke("fireLasers", 0.22f);
-            Invoke("fireLasers", 0.24f);
+            Invoke("fireLasers", 0.25f);
+            Invoke("fireLasers", 0.3f);
+            Invoke("fireLasers", 0.35f);
+            Invoke("fireLasers", 0.4f);
+            Invoke("fireLasers", 0.45f);
             laserTimer = 8.5f;
         }
         if (defenderTimer <= 0) {

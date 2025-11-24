@@ -156,7 +156,7 @@ public class PlayerStats : MonoBehaviour
             level += 1; //increases level by 1
             exp = exp - nextLevelBarrier; //resets exp
             expBar.setEXP(exp);
-            nextLevelBarrier = (nextLevelBarrier + 5) * level; //increases exp needed for next level
+            nextLevelBarrier = 15 * level + nextLevelBarrier/10; //increases exp needed for next level
             expBar.setBoundary(nextLevelBarrier);
             GameObject lvlUp = Instantiate(levelUpEffect); //creates the level up effect
             Vector2 lvlUpPos = transform.position;

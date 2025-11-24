@@ -125,8 +125,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.086771816, y: -0.09743273}
-  m_Size: {x: 0.6171691, y: 1.8036789}
+  m_Offset: {x: -0.0789516, y: -0.14100313}
+  m_Size: {x: 1.5399728, y: 5.939535}
   m_Direction: 0
 --- !u!50 &2888234012894801742
 Rigidbody2D:
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeusLaser: {fileID: 7914927480300770391, guid: a39479280a16e4b4ebca41463772587b, type: 3}
   lightningBolt: {fileID: 7914927480300770391, guid: 0658c7451edd9e8448466bfdee2abf4c, type: 3}
-  soldier: {fileID: 0}
-  lightningChariot: {fileID: 0}
+  soldier: {fileID: 4834779680721585408, guid: f21fc1b0f841d084b8b657d2d475b36d, type: 3}
+  lightningChariot: {fileID: 4834779680721585408, guid: d6f31e360c89eab47919ad8c7883f135, type: 3}
   laserSpeed: 16
   lightningSpeed: 6.5
   laserDamage: 15

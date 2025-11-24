@@ -149,8 +149,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.75512624, y: -1.1515969}
-  m_Size: {x: 1.170053, y: 1.170053}
+  m_Offset: {x: -1.1084061, y: -0.86797786}
+  m_Size: {x: 1.8766127, y: 1.8766127}
   m_Direction: 0
 --- !u!50 &4566274954455980997
 Rigidbody2D:
@@ -213,8 +213,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.011162616, y: -2.032167}
-  m_Size: {x: 1.2007166, y: 1.3652036}
+  m_Offset: {x: 0.011162616, y: -1.0844021}
+  m_Size: {x: 1.2007166, y: 1.3094182}
   m_Direction: 0
 --- !u!70 &7419069795687766150
 CapsuleCollider2D:
@@ -250,7 +250,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06971767, y: 2.1124127}
+  m_Offset: {x: -0.06971767, y: 2.968427}
   m_Size: {x: 1.384082, y: 1.384082}
   m_Direction: 0
 --- !u!70 &5420735949398617362
@@ -287,8 +287,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -2.0441337, y: -2.133796}
-  m_Size: {x: 2.7398005, y: 1.4811605}
+  m_Offset: {x: -2.0441337, y: -1.3076508}
+  m_Size: {x: 2.7398005, y: 1.365397}
   m_Direction: 1
 --- !u!70 &4264453240236282916
 CapsuleCollider2D:
@@ -324,6 +324,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.1416464, y: 0.07589836}
-  m_Size: {x: 3.3046741, y: 3.3046741}
+  m_Offset: {x: 1.0386602, y: 0.93163157}
+  m_Size: {x: 3.5106463, y: 3.5106463}
   m_Direction: 0

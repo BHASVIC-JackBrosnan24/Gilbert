@@ -32,9 +32,9 @@ public class ZeusScript : MonoBehaviour
     int lightningDamage;
     
 
-    float lightningTimer=3; //timer until he throws lightning
-    float laserTimer=8; //timer until he fires lasers
-    float chariotTimer=12; //timer until he spawns the chariot
+    float lightningTimer=2; //timer until he throws lightning
+    float laserTimer=5; //timer until he fires lasers
+    float chariotTimer=7.5f; //timer until he spawns the chariot
     float defenderTimer=3; ////timer until he spawns defenders
     void Start()
     {
@@ -52,7 +52,7 @@ public class ZeusScript : MonoBehaviour
 
         if (lightningTimer <= 0) {
             throwLightning();
-            lightningTimer = 4;
+            lightningTimer = 3;
         }
         if (laserTimer <= 0 && (player.position - transform.position).magnitude < 15) //checks if you are in range
         {
@@ -64,17 +64,17 @@ public class ZeusScript : MonoBehaviour
             Invoke("fireLasers", 0.35f);
             Invoke("fireLasers", 0.4f);
             Invoke("fireLasers", 0.45f);
-            laserTimer = 8.5f;
+            laserTimer = 5;
         }
         if (defenderTimer <= 0) {
             for (int i = 0; i < Random.Range(3, 10); i++) { //repeats a random number of times
                 Invoke("spawnDefender",i/3);
             }
-            defenderTimer = 12;
+            defenderTimer = 6.5f;
         }
         if (chariotTimer <= 0) {
             spawnChariot();
-            chariotTimer = 15;
+            chariotTimer = 10;
         }
     }
 

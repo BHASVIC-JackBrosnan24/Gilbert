@@ -225,6 +225,19 @@ public class PlayerStats : MonoBehaviour
         return sum;
     }
 
+    public void heal(int healAmount)
+    {
+        health += healAmount;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        GameObject heal = Instantiate(healEffect); //instantiates a heal effect
+        Vector3 healPos = transform.position;
+        heal.transform.position = healPos;
+        healthBar.setHealth(health);
+    }
+
     public void charPowerUp(int powerType) //code for adding character power-up to power-up list, and changing their stats
     {
         charPowerUps[nextFreeCPowerUp] = powerType;

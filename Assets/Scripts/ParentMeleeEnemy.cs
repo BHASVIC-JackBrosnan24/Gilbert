@@ -16,6 +16,9 @@ public class ParentMeleeEnemy : MonoBehaviour
     [SerializeField]
     private GameObject damageEffect;
 
+    [SerializeField]
+    private GameObject healOrb;
+
     private float attackTimer = 0;
 
     private Transform player;
@@ -88,6 +91,12 @@ public class ParentMeleeEnemy : MonoBehaviour
                 SceneChanger sceneChanger = GameObject.FindWithTag("SceneChanger").GetComponent<SceneChanger>();
                 sceneChanger.winScreen();
             }
+            if (healOrb != null)
+            {
+                GameObject healOrbs = Instantiate(healOrb);
+                healOrbs.transform.position = transform.position;
+            }
+
             Destroy(this.gameObject);//destroys this game object
         }
     }

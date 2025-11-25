@@ -172,3 +172,4 @@ MonoBehaviour:
   attackRate: 10
   expYield: 9
   damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
+  healOrb: {fileID: 440133550332960263, guid: 22f5ea3d5ca3c3c4b950c39eaff6eec1, type: 3}

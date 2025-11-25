@@ -26,4 +26,12 @@ public class SceneChanger : MonoBehaviour
     public void deathScreen() {
         SceneManager.LoadScene("DeathScreen");
     }
+
+    public void winScreen() {
+        Invoke("invokedWin", 2.5f);
+    }
+
+    public void invokedWin() {
+        SceneManager.LoadScene("WinScreen");
+    }
 }

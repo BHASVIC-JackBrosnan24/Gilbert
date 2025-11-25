@@ -83,6 +83,11 @@ public class ParentMeleeEnemy : MonoBehaviour
             playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
             GameObject damageSprite = Instantiate(damageEffect);
             damageSprite.transform.position = transform.position;
+            if (GetComponent<ZeusScript>() != null) //if this is Zeus
+            {
+                SceneChanger sceneChanger = GameObject.FindWithTag("SceneChanger").GetComponent<SceneChanger>();
+                sceneChanger.winScreen();
+            }
             Destroy(this.gameObject);//destroys this game object
         }
     }

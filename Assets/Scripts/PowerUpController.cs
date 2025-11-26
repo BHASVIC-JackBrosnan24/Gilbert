@@ -12,6 +12,9 @@ public class PowerUpController : MonoBehaviour
     GameObject explosion;
 
     [SerializeField]
+    GameObject trex;
+
+    [SerializeField]
     string[] hammerPowerUps; //array full of the list of hammer power ups, and the probability they trigger
 
     [SerializeField]
@@ -104,5 +107,10 @@ public class PowerUpController : MonoBehaviour
     public GameObject getExplosion()
     {
         return explosion;
+    }
+
+    public GameObject getTrex()
+    {
+        return trex;
     }
 }

@@ -14,6 +14,9 @@ public class AllyScript : MonoBehaviour
     [SerializeField]
     private float attackRate; //how fast the ally will attack
 
+    [SerializeField]
+    private GameObject damageEffect;
+
     ParentMeleeEnemy melee;
     ParentRangedEnemy ranged;
     PauseController pauseController;
@@ -49,7 +52,6 @@ public class AllyScript : MonoBehaviour
     {
         if (target == null) {
             target = GameObject.FindWithTag("Enemy");
-            print(target);
         }
         else
         {
@@ -57,6 +59,36 @@ public class AllyScript : MonoBehaviour
             {
                 directionCalc();
                 movement();
+            }
+        }
+        if (attackTimer > 0) { 
+            attackTimer -= Time.deltaTime * attackRate * pauseController.unpaused;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) //every frame that there are collisions
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        { 
+            GameObject enemy = collision.gameObject;
+            attack(enemy); //passes in the enemy game object to the attack method
+        }
+    }
+
+    private void attack(GameObject enemy)
+    {
+        melee = enemy.GetComponent<ParentMeleeEnemy>();
+        ranged = enemy.GetComponent<ParentRangedEnemy>();
+        if (attackTimer <= 0) 
+        {
+            if (melee != null)
+            {
+                melee.damaged(damage); //damages melee enemy
+                attackTimer += 1;
+            }
+            if (ranged != null) { 
+                ranged.damaged(damage); //damages ranged enemy
+                attackTimer += 1;
             }
         }
     }
@@ -85,5 +117,17 @@ public class AllyScript : MonoBehaviour
     {
         directionVector = (target.transform.position - this.transform.position).normalized; //calculates the direction vector from the enemy to the player
         direction = Mathf.Atan(directionVector.y / directionVector.x); //calculate the angle it should travel at
+    }
+
+    public void damaged(int damaged)
+    {
+        health-=damaged;
+        GameObject damageSprite = Instantiate(damageEffect);
+        damageSprite.transform.position = transform.position;
+        if (health < 0)
+        {
+            Destroy(gameObject);
+        }
+        print(health);
     }
 }

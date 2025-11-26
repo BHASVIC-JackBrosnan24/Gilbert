@@ -74,6 +74,14 @@ public class ParentMeleeEnemy : MonoBehaviour
             GameObject plyr = collision.gameObject;
             attack(plyr); //passes in the player game object to the attack method
         }
+        else if (collision.gameObject.GetComponent<AllyScript>() != null) 
+        {
+            if (attackTimer <= 0)
+            {
+                collision.gameObject.GetComponent<AllyScript>().damaged(damage); //damages player
+                attackTimer += 1;
+            }
+        }
     }
 
     public void damaged(int hDamage)

@@ -87,6 +87,11 @@ public class EnemyProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (collision.gameObject.GetComponent<AllyScript>() != null)
+        {
+                collision.gameObject.GetComponent<AllyScript>().damaged(damage); //damages player
+                Destroy(gameObject);
+        }
     }
     private void directionCalc()
     { //method for calculating the direction

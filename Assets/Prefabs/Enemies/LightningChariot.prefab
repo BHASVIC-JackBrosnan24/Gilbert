@@ -168,12 +168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7f785ba40ab4946b6276db33863dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 70
   damage: 35
-  speed: 5
+  speed: 6
   attackRate: 0.3
   expYield: 200
   damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
+  healOrb: {fileID: 0}
 --- !u!70 &4765555421317208273
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

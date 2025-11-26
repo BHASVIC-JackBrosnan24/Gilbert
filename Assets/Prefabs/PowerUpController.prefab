@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUp: {fileID: 4111603946556632056, guid: 6a52632e02516cb459594ca9e2b43ae6, type: 3}
   electricity: {fileID: 8983967052170471047, guid: a7d10ea16ccf87f4db1845dd03939660, type: 3}
+  explosion: {fileID: 6550815150500495087, guid: b5875f900fa5ea8428b211cb9fd2ee03, type: 3}
   hammerPowerUps:
   - Fire
   - Electric
@@ -54,8 +55,8 @@ MonoBehaviour:
   - T-Rex
   hammerProb:
   - 15
-  - 10
-  - 5
+  - 7.5
+  - 7.5
   - 1
   - 0.1
   characterPowerUps:

@@ -11,7 +11,6 @@ public class ElectricScript : MonoBehaviour
     PowerUpController powerUpController;
     private void Start()
     {
-        print(6);
         powerUpController = GameObject.FindWithTag("PowerUpController").GetComponent<PowerUpController>();
         electricity = powerUpController.getElec();
         spriteRenderer = GetComponent<SpriteRenderer>();

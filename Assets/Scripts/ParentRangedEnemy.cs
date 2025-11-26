@@ -80,13 +80,13 @@ public class ParentRangedEnemy : MonoBehaviour
     public void damaged(int hDamage)
     {
         health -= hDamage;//decreases health by the damage of the hammmer
+        GameObject damageSprite = Instantiate(damageEffect);
+        damageSprite.transform.position = transform.position;
         if (health <= 0)
         {
             GameObject plyr = GameObject.Find("Player"); //gets the player
             PlayerStats playerStats = plyr.GetComponent<PlayerStats>(); //gets the players stats
             playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
-            GameObject damageSprite = Instantiate(damageEffect);
-            damageSprite.transform.position = transform.position;
             Destroy(this.gameObject);//destroys this game object
         }
     }
@@ -164,5 +164,20 @@ public class ParentRangedEnemy : MonoBehaviour
     public void unfreeze()
     {
         frozen = 1;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public float getRate()
+    {
+        return attackRate;
+    }
+
+    public int getHealth()
+    {
+        return health;
     }
 }

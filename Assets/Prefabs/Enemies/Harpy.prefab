@@ -166,9 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7f785ba40ab4946b6276db33863dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 45
   damage: 4
-  speed: 4.5
+  speed: 5
   attackRate: 5
   expYield: 10
   damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
+  healOrb: {fileID: 0}

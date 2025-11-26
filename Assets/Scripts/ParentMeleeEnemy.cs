@@ -51,8 +51,8 @@ public class ParentMeleeEnemy : MonoBehaviour
                 movement();
             }
         }
-        if (attackTimer >= 0) { 
-        attackTimer -= Time.deltaTime*attackRate * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
+        if (attackTimer >= 0) {
+            attackTimer -= Time.deltaTime * attackRate * pauseController.unpaused * frozen; //decreases timer proportionally to attack rate
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)//gets called whenever there are collisions
@@ -79,13 +79,13 @@ public class ParentMeleeEnemy : MonoBehaviour
     public void damaged(int hDamage)
     {
         health -= hDamage;//decreases health by the damage of the hammmer
+        GameObject damageSprite = Instantiate(damageEffect);
+        damageSprite.transform.position = transform.position;
         if (health <= 0)
         {
             GameObject plyr = GameObject.Find("Player"); //gets the player
             PlayerStats playerStats = plyr.GetComponent<PlayerStats>(); //gets the players stats
             playerStats.setEXP(playerStats.getEXP() + expYield); //increases the player's total exp by expYield
-            GameObject damageSprite = Instantiate(damageEffect);
-            damageSprite.transform.position = transform.position;
             if (GetComponent<ZeusScript>() != null) //if this is Zeus
             {
                 SceneChanger sceneChanger = GameObject.FindWithTag("SceneChanger").GetComponent<SceneChanger>();
@@ -108,7 +108,7 @@ public class ParentMeleeEnemy : MonoBehaviour
         {
             pos.x += speed * Mathf.Cos(direction) * Time.deltaTime * pauseController.unpaused * frozen;
             pos.y += speed * Mathf.Sin(direction) * Time.deltaTime * pauseController.unpaused * frozen;//calculates new location
-            transform.localScale = new Vector3( scale.x, scale.y, scale.z );
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
         }
         else
         {
@@ -129,7 +129,7 @@ public class ParentMeleeEnemy : MonoBehaviour
     private void attack(GameObject plyr) {
         playerStats = plyr.GetComponent<PlayerStats>(); //gets the stats and movement components
         playerMovement = plyr.GetComponent<PlayerMovement>();
-        if (playerMovement.getDashInvincibility() == false && attackTimer<=0) //makes sure the player isn't dashing (invincible), and enemy can attack
+        if (playerMovement.getDashInvincibility() == false && attackTimer <= 0) //makes sure the player isn't dashing (invincible), and enemy can attack
         {
             playerStats.damaged(damage); //damages player
             attackTimer += 1;
@@ -158,5 +158,22 @@ public class ParentMeleeEnemy : MonoBehaviour
     public void unfreeze()
     {
         frozen = 1;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public float getRate()
+    {
+        return attackRate;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

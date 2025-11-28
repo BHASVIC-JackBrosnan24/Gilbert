@@ -14,12 +14,12 @@ public class AllyScript : MonoBehaviour
     [SerializeField]
     private float attackRate; //how fast the ally will attack
 
-    [SerializeField]
     private GameObject damageEffect;
 
     ParentMeleeEnemy melee;
     ParentRangedEnemy ranged;
     PauseController pauseController;
+    SpriteRenderer spriteRenderer;
 
     private Vector3 directionVector;
     private float direction;
@@ -27,17 +27,21 @@ public class AllyScript : MonoBehaviour
     private float attackTimer = 0;
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameObject.FindWithTag("Enemy");
         melee = gameObject.GetComponent<ParentMeleeEnemy>();
         ranged = gameObject.GetComponent<ParentRangedEnemy>();
         scale = transform.localScale;
         pauseController = GameObject.Find("PauseController").GetComponent<PauseController>(); //Gets the pause controller
+        damageEffect = GameObject.FindWithTag("Player").GetComponent<PlayerStats>().getDE();
 
         if (melee != null) { //sets all the stats if this enemy is melee
             health = melee.getHealth();
             damage = melee.getDamage();
             speed = melee.getSpeed();
             attackRate = melee.getRate();
+            spriteRenderer.color = new Color(200, 0, 200);
+            Destroy(melee); //destroys the enemy script, so it functionally is no longer an enemy
         }
         else if (ranged != null) //sets all the stats if the enemy is ranged
         {
@@ -45,7 +49,10 @@ public class AllyScript : MonoBehaviour
             damage = ranged.getDamage();
             speed = ranged.getSpeed();
             attackRate = ranged.getRate();
+            Destroy(ranged);
         }
+        gameObject.layer = 7; //sets the object to layer 7 - the player layer
+        gameObject.tag = "Untagged"; //removes the enemy tag
     }
 
     void Update()

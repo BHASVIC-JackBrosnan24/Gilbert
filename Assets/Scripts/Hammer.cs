@@ -65,4 +65,8 @@ public class Hammer : MonoBehaviour
         direction=Mathf.Atan(directionVector.y/directionVector.x); //calculates the angle for the direction the hammer shoould travel in
     }
 
+    public void setDamage(int damage2){
+        damage = damage2;
+    }
+
 }

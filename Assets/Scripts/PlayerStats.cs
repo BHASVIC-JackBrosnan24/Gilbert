@@ -225,6 +225,10 @@ public class PlayerStats : MonoBehaviour
         return sum;
     }
 
+    public GameObject getDE(){
+        return damageEffect;
+    }
+
     public void heal(int healAmount)
     {
         health += healAmount;

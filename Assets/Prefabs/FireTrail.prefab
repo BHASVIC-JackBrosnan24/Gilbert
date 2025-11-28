@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3006059131676112333}
   - component: {fileID: -7038476656760325173}
   - component: {fileID: 3556831984370304971}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: FireTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

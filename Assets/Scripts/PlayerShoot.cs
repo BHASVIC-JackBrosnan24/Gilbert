@@ -53,6 +53,9 @@ public class PlayerShoot : MonoBehaviour
                         case 2:
                             hammer.AddComponent<PUExplosion>();
                             break;
+                        case 3:
+                            hammer.AddComponent<PUHypno>();
+                            break;
                         case 4:
                             hammer.AddComponent<PUTrex>();
                             break;

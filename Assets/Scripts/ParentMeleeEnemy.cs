@@ -17,6 +17,9 @@ public class ParentMeleeEnemy : MonoBehaviour
     private GameObject damageEffect;
 
     [SerializeField]
+    private int hypnotisable;
+
+    [SerializeField]
     private GameObject healOrb;
 
     private float attackTimer = 0;
@@ -183,5 +186,10 @@ public class ParentMeleeEnemy : MonoBehaviour
 
     public int getHealth() {
         return health;
+    }
+
+    public int getHypno()
+    {
+        return hypnotisable;
     }
 }

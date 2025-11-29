@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,12 +22,17 @@ public class AllyScript : MonoBehaviour
     PauseController pauseController;
     SpriteRenderer spriteRenderer;
 
+    Rigidbody2D rigidBody;
+    CapsuleCollider2D capsuleCollider;
+
     private Vector3 directionVector;
     private float direction;
     private Vector3 scale;
     private float attackTimer = 0;
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameObject.FindWithTag("Enemy");
         melee = gameObject.GetComponent<ParentMeleeEnemy>();
@@ -42,6 +48,15 @@ public class AllyScript : MonoBehaviour
             attackRate = melee.getRate();
             spriteRenderer.color = new Color(200, 0, 200);
             Destroy(melee); //destroys the enemy script, so it functionally is no longer an enemy
+
+            rigidBody.includeLayers = LayerMask.GetMask("Enemy","EnemyProjectile");
+            rigidBody.excludeLayers = LayerMask.GetMask("Background", "Default", "Effects", "Hammer", "PowerUpGem", "Water", "UI");
+            capsuleCollider.contactCaptureLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.callbackLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.forceSendLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.forceReceiveLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.includeLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.excludeLayers = LayerMask.GetMask("Background", "Default", "Effects", "Hammer", "PowerUpGem", "Water", "UI");
         }
         else if (ranged != null) //sets all the stats if the enemy is ranged
         {
@@ -50,6 +65,16 @@ public class AllyScript : MonoBehaviour
             speed = ranged.getSpeed();
             attackRate = ranged.getRate();
             Destroy(ranged);
+            spriteRenderer.color = new Color(200, 0, 200);
+
+            rigidBody.includeLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            rigidBody.excludeLayers = LayerMask.GetMask("Background", "Default", "Effects", "Hammer", "PowerUpGem", "Water", "UI");
+            capsuleCollider.contactCaptureLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.callbackLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.forceSendLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.forceReceiveLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.includeLayers = LayerMask.GetMask("Enemy", "EnemyProjectile");
+            capsuleCollider.excludeLayers = LayerMask.GetMask("Background", "Default", "Effects", "Hammer", "PowerUpGem", "Water", "UI");
         }
         gameObject.layer = 7; //sets the object to layer 7 - the player layer
         gameObject.tag = "Untagged"; //removes the enemy tag
@@ -58,6 +83,11 @@ public class AllyScript : MonoBehaviour
     void Update()
     {
         if (target == null) {
+                target = GameObject.FindWithTag("Enemy");
+        }
+        else if (target.gameObject.CompareTag("Enemy") == false)
+        {
+            target = null;
             target = GameObject.FindWithTag("Enemy");
         }
         else
@@ -135,6 +165,5 @@ public class AllyScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        print(health);
     }
 }

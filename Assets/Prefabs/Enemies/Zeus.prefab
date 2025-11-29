@@ -173,6 +173,7 @@ MonoBehaviour:
   attackRate: 2
   expYield: 0
   damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
+  hypnotisable: 1
   healOrb: {fileID: 0}
 --- !u!114 &6642209707655238785
 MonoBehaviour:

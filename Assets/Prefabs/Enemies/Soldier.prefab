@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4834779680721585408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.003666, y: -1.7418692, z: 0}
+  m_LocalPosition: {x: -16.806301, y: 4.3872347, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -172,4 +172,5 @@ MonoBehaviour:
   attackRate: 5
   expYield: 45
   damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
+  hypnotisable: 1
   healOrb: {fileID: 0}

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PUHypno : MonoBehaviour
@@ -15,7 +16,20 @@ public class PUHypno : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && pauseController.unpaused == 1)
         {
-            collision.gameObject.AddComponent<AllyScript>(); //converts the enemy into an ally
+            if (collision.gameObject.GetComponent<ParentMeleeEnemy>()!= null)
+            {
+                if (collision.gameObject.GetComponent<ParentMeleeEnemy>().getHypno() == 0)
+                {
+                    collision.gameObject.AddComponent<AllyScript>(); //converts the enemy into an ally
+                }
+            }
+            else if (collision.gameObject.GetComponent<ParentRangedEnemy>() != null)
+            {
+                if (collision.gameObject.GetComponent<ParentRangedEnemy>().getHypno() == 0)
+                {
+                    collision.gameObject.AddComponent<AllyScript>(); //converts the enemy into an ally
+                }
+            }
         }
     }
 }

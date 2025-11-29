@@ -252,7 +252,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (powerType == 1) //number assossiated with speed up
         {
-            speed += 1;
+            speed += 1.5f;
         }
         else if (powerType == 2) //number assossiated with health up
         {

@@ -21,6 +21,8 @@ public class ParentRangedEnemy : MonoBehaviour
     private GameObject projectile; //the projectile it will shoot
     [SerializeField]
     private GameObject damageEffect;
+    [SerializeField]
+    private int hypnotisable;
 
     private float attackTimer = 0;
     Vector3 scale;
@@ -179,5 +181,10 @@ public class ParentRangedEnemy : MonoBehaviour
     public int getHealth()
     {
         return health;
+    }
+
+    public int getHypno()
+    {
+        return hypnotisable;
     }
 }

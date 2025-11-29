@@ -104,10 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
-  damage: 50
+  damage: 60
   speed: 4
   attackRate: 2
-  damageEffect: {fileID: 1993437389002896289, guid: 755841641c173db4586fc9671b6662fa, type: 3}
 --- !u!50 &5897356900955673705
 Rigidbody2D:
   serializedVersion: 5

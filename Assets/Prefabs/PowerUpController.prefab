@@ -58,8 +58,8 @@ MonoBehaviour:
   - 15
   - 7.5
   - 7.5
-  - 100
-  - 0.1
+  - 0.75
+  - 0.2
   characterPowerUps:
   - Damage
   - Speed

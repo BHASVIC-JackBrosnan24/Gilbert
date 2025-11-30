@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -36,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (dashing == 0f) {
+        if (dashing <= 0f) {
             speed = playerStats.getSpeed();
         }
         speedV = speed; 
